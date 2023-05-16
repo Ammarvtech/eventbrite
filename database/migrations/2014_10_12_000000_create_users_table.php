@@ -8,25 +8,19 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('phone_number')->nullable();
-            $table->string('org_name')->nullable(); // org = organization
-            $table->string('org_website')->nullable();
-            $table->text('org_mailing_address')->nullable();
-            $table->string('org_communication_method')->nullable();
-            $table->string('org_timezone')->nullable();
-            $table->string('country')->nullable();
-            $table->string('city')->nullable();
-            $table->string('postal_code')->nullable();
-            $table->text('address')->nullable();
             $table->string('password');
+            $table->string('status')->default('active');
+            $table->string('role')->default('user')->enum('user', 'admin', 'vendor');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -34,8 +28,10 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('users');
     }
