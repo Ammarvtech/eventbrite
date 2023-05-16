@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BannerController;
@@ -16,7 +17,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::post('login', [AuthController::class, 'login'])->name('login');
 
     Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
-        Route::get('index', [DashboardController::class, 'index'])->name('index');
+        Route::get('/', [DashboardController::class, 'index'])->name('index');
     });
 
     // Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {

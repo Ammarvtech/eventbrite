@@ -250,7 +250,7 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion">
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('admin.categories.index') }}">
+                            <a class="menu-link" href="{{ route('admin.cms-pages.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
