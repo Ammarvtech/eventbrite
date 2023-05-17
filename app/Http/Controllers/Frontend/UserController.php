@@ -91,10 +91,12 @@ class UserController extends Controller
         
         $credentials = $request->only('email', 'password');
         if (!Auth::attempt($credentials)) {
+            dd('if');
             return response()->json([
-                'message' => 'Unauthorized',
+                'message' => 'email or password is incorrect',
             ], 401);
         } else {
+            dd('else');
             $user = Auth::user();
             $token = $user->createToken('authToken')->plainTextToken;
             return response()->json([
