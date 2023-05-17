@@ -37,4 +37,10 @@ Route::post('/contact-us', [PagesController::class, 'saveContactUs']);
 
 // tournaments
 Route::get('/tournaments', [TournamentController::class, 'getAll']);
+Route::get('/tournaments/{id}', [TournamentController::class, 'getById']);
+Route::post('/tournaments', [TournamentController::class, 'create']);
+Route::put('/tournaments/{id}', [TournamentController::class, 'update']);
+Route::delete('/tournaments/{id}', [TournamentController::class, 'delete']);
+
+
 
