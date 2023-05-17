@@ -13,4 +13,9 @@ class PagesController extends Controller
         $page = Page::where('slug', 'privacy-policy')->first();
         return response()->json(['data' => $page], 200);
     }
+    public function termsAndConditions()
+    {
+        $page = Page::where('slug', 'terms-and-conditions')->first();
+        return response()->json(['data' => $page], 200);
+    }
 }

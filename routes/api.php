@@ -23,3 +23,6 @@ Route::get('/countries', [CountryService::class, 'getAll']);
 
 // about us 
 Route::get('/privacy-policy', [PagesController::class, 'privacyPolicy']);
+
+// terms and conditions
+Route::get('/terms-and-conditions', [PagesController::class, 'termsAndConditions']);
