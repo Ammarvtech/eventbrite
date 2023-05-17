@@ -5,12 +5,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\BannerController;
-use App\Http\Controllers\Admin\EventController;
-use App\Http\Controllers\Admin\JobController;
-use App\Http\Controllers\Admin\EventCategoryController;
-
+use App\Http\Controllers\Admin\OrganizationController;
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('login', [AuthController::class, 'loginForm'])->name('login');
@@ -20,14 +15,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
     });
 
-    // Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
-    //     Route::get('index', [CategoryController::class, 'index'])->name('index');
-    //     Route::get('create', [CategoryController::class, 'create'])->name('create');
-    //     Route::post('store', [CategoryController::class, 'store'])->name('store');
-    //     Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('edit');
-    //     Route::post('update/{id}', [CategoryController::class, 'update'])->name('update');
-    //     Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('destroy');
-    // });
+    Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
+        Route::get('index', [CategoryController::class, 'index'])->name('index');
+        Route::get('create', [CategoryController::class, 'create'])->name('create');
+        Route::post('store', [CategoryController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [CategoryController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [CategoryController::class, 'delete'])->name('destroy');
+    });
+    Route::group(['prefix' => 'organization', 'as' => 'organization.'], function () {
+        Route::get('/', [OrganizationController::class, 'index'])->name('index');
+        Route::get('create', [OrganizationController::class, 'create'])->name('create');
+        Route::post('store', [OrganizationController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [OrganizationController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [OrganizationController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [OrganizationController::class, 'delete'])->name('destroy');
+    });
 
     // Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
     //     Route::get('index', [ProductController::class, 'index'])->name('index');
