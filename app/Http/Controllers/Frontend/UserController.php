@@ -81,22 +81,20 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|string',
+            'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
-        
-        if ($validator->fails()) {
+        if($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 422);
         }
+
         
         $credentials = $request->only('email', 'password');
         if (!Auth::attempt($credentials)) {
-            dd('if');
             return response()->json([
                 'message' => 'email or password is incorrect',
             ], 401);
         } else {
-            dd('else');
             $user = Auth::user();
             $token = $user->createToken('authToken')->plainTextToken;
             return response()->json([
