@@ -15,12 +15,22 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('org_name')->nullable(); // org = organization
+            $table->string('org_website')->nullable();
+            $table->text('org_mailing_address')->nullable();
+            $table->string('org_communication_method')->nullable();
+            $table->string('org_timezone')->nullable();
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->text('address')->nullable();
             $table->string('password');
             $table->string('status')->default('active');
-            $table->string('role')->default('user')->enum('user', 'admin', 'vendor');
+            $table->string('role')->default('player')->enum('organizer', 'admin', 'player');
             $table->rememberToken();
             $table->timestamps();
         });
