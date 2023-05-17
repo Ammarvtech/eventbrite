@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 
 class DatabaseSeeder extends Seeder
@@ -29,6 +30,11 @@ class DatabaseSeeder extends Seeder
         \App\Models\ProductImage::factory(10)->create();
         \App\Models\Country::factory(100)->create();
         \App\Models\Organization::factory(10)->create();
+        \App\Models\Faq::factory(10)->create();
+        \App\Models\Tournament::factory(10)->create();
+        \App\Models\TournamentCategory::factory(10)->create();
+        \App\Models\TournamentImage::factory(10)->create();
+
 
         // \App\Models\Page::factory(10)->create();
 

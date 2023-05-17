@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\PagesController;
 use App\Http\Components\Services\CountryService;
+use App\Http\Controllers\Frontend\TournamentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,14 @@ Route::get('/privacy-policy', [PagesController::class, 'privacyPolicy']);
 
 // terms and conditions
 Route::get('/terms-and-conditions', [PagesController::class, 'termsAndConditions']);
+Route::get('/disclaimer', [PagesController::class, 'disclaimer']);
+Route::get('/about-us', [PagesController::class, 'aboutUs']);
+Route::get('/contact-us', [PagesController::class, 'contactUs']);
+Route::get('/faq', [PagesController::class, 'faq']);
+
+// post the contact us form to this route.
+Route::post('/contact-us', [PagesController::class, 'saveContactUs']);
+
+// tournaments
+Route::get('/tournaments', [TournamentController::class, 'getAll']);
+
