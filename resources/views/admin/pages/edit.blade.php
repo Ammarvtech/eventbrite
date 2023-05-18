@@ -167,7 +167,7 @@
                                     <div>
                                         <label class="form-label">Description</label>
                                         <div id="kt_ecommerce_add_category_description"
-                                            name="kt_ecommerce_add_category_description" class="min-h-200px mb-2">
+                                            name="description" class="min-h-200px mb-2">
                                                  <textarea class="form-control" name="content">{{$data->content}}</textarea>
                                             </div>
                                         <div class="text-muted fs-7">Set a description to the page for better

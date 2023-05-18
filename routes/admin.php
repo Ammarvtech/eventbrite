@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrganizationController;
+use App\Http\Controllers\Admin\CmsController;
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('login', [AuthController::class, 'loginForm'])->name('login');
@@ -80,6 +81,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('edit/{id}', [PageController::class, 'edit'])->name('edit');
         Route::post('update/{id}', [PageController::class, 'update'])->name('update');
         Route::get('delete/{id}', [PageController::class, 'delete'])->name('destroy');
+    });
+    Route::group(['prefix' => 'cms', 'as' => 'cms.'], function () {
+        Route::get('/contact-us', [CmsController::class, 'contact'])->name('contact');
+        Route::post('/contact-us/{id}', [CmsController::class, 'contactSubmit'])->name('contactSubmit');
+        Route::get('/about-us', [CmsController::class, 'about'])->name('about');
+        Route::post('/about-us', [CmsController::class, 'aboutSubmit'])->name('aboutSubmit');
     });
 
 });
