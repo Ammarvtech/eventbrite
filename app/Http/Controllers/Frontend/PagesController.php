@@ -44,12 +44,7 @@ class PagesController extends Controller
             return response()->json(['error' => $validator->errors()], 422);
         }
         $data = $request->all();
-        $page = DB::table('contact_us_cms')->first();
-        if($page){
-            DB::table('contact_us_cms')->where('id', $page->id)->update($data);
-        }else{
-            DB::table('contact_us_cms')->insert($data);
-        }
+        DB::table('contact_us_queries')->insert($data);
         return response()->json(['message' => 'Contact us saved successfully'], 200);
     }
 

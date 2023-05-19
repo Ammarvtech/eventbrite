@@ -42,7 +42,7 @@
                             <div class="card card-flush py-4">
                                 <div class="card-header">
                                     <div class="card-title">
-                                        <h2 class="required">About Us Image</h2>
+                                        <h2 class="required">Banner Image</h2>
                                     </div>
                                 </div>
                                 <div class="card-body text-center pt-0">
@@ -70,6 +70,120 @@
                                             <i class="bi bi-pencil-fill fs-7"></i>
                                             
                                             <input type="file" name="image" accept=".png, .jpg, .jpeg" />
+                                            <input type="hidden" name="avatar_remove" />
+                                            
+                                        </label>
+                                      
+                                        <span
+                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                            data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                            title="Cancel avatar">
+                                            <i class="bi bi-x fs-2"></i>
+                                        </span>
+                                      
+                                        <span
+                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                            data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                            title="Remove avatar">
+                                            <i class="bi bi-x fs-2"></i>
+                                        </span>
+                                       
+                                    </div>
+                               
+                                    <div class="text-muted fs-7">Set the category thumbnail image. Only *.png, *.jpg and
+                                        *.jpeg image files are accepted</div>
+                                 
+                                </div>
+                          
+                            </div>
+                            <div class="card card-flush py-4">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2 class="required">About Us Image</h2>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center pt-0">
+                                   
+                                    <style>
+                                        .image-input-placeholder {
+                                            background-image: url('assets/media/svg/files/blank-image.svg');
+                                        }
+
+                                        [data-theme="dark"] .image-input-placeholder {
+                                            background-image: url('assets/media/svg/files/blank-image-dark.svg');
+                                        }
+                                    </style>
+                                
+                                    <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
+                                        data-kt-image-input="true">
+                                    <div class="image-input-wrapper w-150px h-150px" style="background-image: url('http://127.0.0.1:8000/storage/{{ $about->des_image }}')">
+                                    </div>
+                             
+                                        <label
+                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                            data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                            title="Change Image">
+                                        
+                                            <i class="bi bi-pencil-fill fs-7"></i>
+                                            
+                                            <input type="file" name="des_image" accept=".png, .jpg, .jpeg" />
+                                            <input type="hidden" name="avatar_remove" />
+                                            
+                                        </label>
+                                      
+                                        <span
+                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                            data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                            title="Cancel avatar">
+                                            <i class="bi bi-x fs-2"></i>
+                                        </span>
+                                      
+                                        <span
+                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                            data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                            title="Remove avatar">
+                                            <i class="bi bi-x fs-2"></i>
+                                        </span>
+                                       
+                                    </div>
+                               
+                                    <div class="text-muted fs-7">Set the category thumbnail image. Only *.png, *.jpg and
+                                        *.jpeg image files are accepted</div>
+                                 
+                                </div>
+                          
+                            </div>
+                            <div class="card card-flush py-4">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2 class="required">Contact Us Image</h2>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center pt-0">
+                                   
+                                    <style>
+                                        .image-input-placeholder {
+                                            background-image: url('assets/media/svg/files/blank-image.svg');
+                                        }
+
+                                        [data-theme="dark"] .image-input-placeholder {
+                                            background-image: url('assets/media/svg/files/blank-image-dark.svg');
+                                        }
+                                    </style>
+                                
+                                    <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
+                                        data-kt-image-input="true">
+                                    <div class="image-input-wrapper w-150px h-150px" style="background-image: url('http://127.0.0.1:8000/storage/{{ $about->contact_image }}')">
+                                    </div>
+                             
+                                        <label
+                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                            data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                            title="Change Image">
+                                        
+                                            <i class="bi bi-pencil-fill fs-7"></i>
+                                            
+                                            <input type="file" name="contact_image" accept=".png, .jpg, .jpeg" />
                                             <input type="hidden" name="avatar_remove" />
                                             
                                         </label>
@@ -156,7 +270,150 @@
                                     
                                 </div>
                             </div>
-                         
+                            <div class="card card-flush py-4">
+                             
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2>Support Section</h2>
+                                    </div>
+                                </div>
+                             
+                                <div class="card-body pt-0">
+                                    <div class="mb-10">
+                                        <label class="form-label">Title</label>
+                                        <input type="text" class="form-control mb-2" name="meta_title"
+                                            placeholder="Meta tag name" value="{{$about->support_title}}"/>
+                                    
+                                    </div>
+                                    <div class="mb-10">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="card-title">
+                                                    <h2>Section 1</h2>
+                                                </div>
+                                                <div>
+                                                    <label class="form-label">Title</label>
+                                                    <input type="text" class="form-control mb-2" name="support_section_one_title"
+                                                        placeholder="Title" value="{{$about->support_section_one_title}}"/>
+                                                  
+                                                </div>
+                                                <label class="form-label">Description</label>
+                                                <div id="kt_ecommerce_add_category_meta_description" class="min-h-10px mb-2">
+                                                    <textarea class="form-control" name="support_section_one_description">{{$about->support_section_one_description}}</textarea>
+                                                </div>
+                                                <div>
+                                                    <label class="form-label">Link Text</label>
+                                                    <input type="text" class="form-control mb-2" name="support_section_one_link_text"
+                                                        placeholder="Link Text" value="{{$about->support_section_one_link_text}}"/>
+                                                  
+                                                </div>
+                                                <div>
+                                                    <label class="form-label">Link Url</label>
+                                                    <input type="text" class="form-control mb-2" name="support_section_one_link"
+                                                        placeholder="Link Url" value="{{$about->support_section_one_link}}"/>
+                                                  
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card-title">
+                                                    <h2>Section 2</h2>
+                                                </div>
+                                                <div>
+                                                    <label class="form-label">Title</label>
+                                                    <input type="text" class="form-control mb-2" name="support_section_two_title"
+                                                        placeholder="Title" value="{{$about->support_section_two_title}}"/>
+                                                  
+                                                </div>
+                                                <label class="form-label">Description</label>
+                                                <div id="kt_ecommerce_add_category_meta_description" class="min-h-10px mb-2">
+                                                    <textarea class="form-control" name="support_section_two_description">{{$about->support_section_two_description}}</textarea>
+                                                </div>
+                                                <div>
+                                                    <label class="form-label">Link Text</label>
+                                                    <input type="text" class="form-control mb-2" name="support_section_two_link_text"
+                                                        placeholder="Link Text" value="{{$about->support_section_two_link_text}}"/>
+                                                  
+                                                </div>
+                                                <div>
+                                                    <label class="form-label">Link Url</label>
+                                                    <input type="text" class="form-control mb-2" name="support_section_two_link"
+                                                        placeholder="Link Url" value="{{$about->support_section_two_link}}"/>
+                                                  
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card-title">
+                                                    <h2>Section 3</h2>
+                                                </div>
+                                                <div>
+                                                    <label class="form-label">Title</label>
+                                                    <input type="text" class="form-control mb-2" name="support_section_three_title"
+                                                        placeholder="Title" value="{{$about->support_section_three_title}}"/>
+                                                  
+                                                </div>
+                                                <label class="form-label">Description</label>
+                                                <div id="kt_ecommerce_add_category_meta_description" class="min-h-10px mb-2">
+                                                    <textarea class="form-control" name="support_section_three_description">{{$about->support_section_three_description}}</textarea>
+                                                </div>
+                                                <div>
+                                                    <label class="form-label">Link Text</label>
+                                                    <input type="text" class="form-control mb-2" name="support_section_three_link_text"
+                                                        placeholder="Link Text" value="{{$about->support_section_three_link_text}}"/>
+                                                  
+                                                </div>
+                                                <div>
+                                                    <label class="form-label">Link Url</label>
+                                                    <input type="text" class="form-control mb-2" name="support_section_three_link"
+                                                        placeholder="Link Url" value="{{$about->support_section_three_link}}"/>
+                                                  
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                       
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                            <div class="card card-flush py-4">
+                             
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2>Contact Us Section</h2>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div>
+                                        <label class="form-label">Title</label>
+                                        <input type="text" class="form-control mb-2" name="contact_section_title"
+                                            placeholder="" value="{{$about->contact_section_title}}"/>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div >
+                                        <label class="form-label">Heading</label>
+                                        <input type="text" class="form-control mb-2" name="contact_section_heading"
+                                            placeholder="" value="{{$about->contact_section_heading}}"/>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div >
+                                        <label class="form-label">Lower Section Title</label>
+                                        <input type="text" class="form-control mb-2" name="contact_section_lower_title"
+                                            placeholder="" value="{{$about->contact_section_lower_title}}"/>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                <div>
+                                    <label class="form-label">Lower Section Description</label>
+                                    <div id="kt_ecommerce_add_category_meta_description" class="min-h-100px mb-2">
+                                        <textarea class="form-control" name="contact_section_lower_description">{{$about->contact_section_lower_description}}</textarea>
+                                    </div>
+                                 
+                                </div>
+                                </div>
+                            </div>
+                            
                             <div class="card card-flush py-4">
                              
                                 <div class="card-header">

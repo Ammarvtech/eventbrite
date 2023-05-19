@@ -51,6 +51,7 @@ class CmsController extends Controller
     }
 
     public function aboutSubmit(Request $request){
+        
         $request->validate([
             'title' => 'required',
             'heading' => 'required',
@@ -58,23 +59,27 @@ class CmsController extends Controller
             'btn_text' => 'required',
             'btn_link' => 'required',
         ]);
-
+        $data = $request->all();
         if ($request->hasFile('image')) {
-            $image = $request->file('image')->store('uploads', 'public');
+            $data['image'] = $request->file('image')->store('uploads', 'public');
         }else{
-            $image = DB::table('about_us')->where('id', 1)->first()->image;
+            $data['image'] = DB::table('about_us')->where('id', 1)->first()->image;
         }
-        DB::table('about_us')->where('id', 1)->update([
-            'title' => $request->title,
-            'heading' => $request->heading,
-            'description' => $request->description,
-            'image' => $image,
-            'btn_text' => $request->btn_text,
-            'btn_link' => $request->btn_link,
-            'meta_title' => $request->meta_title,
-            'meta_description' => $request->meta_description,
-            'meta_keywords' => $request->meta_keywords,
-        ]);
+        if ($request->hasFile('des_image')) {
+            $data['des_image'] = $request->file('des_image')->store('uploads', 'public');
+        }else{
+            $data['des_image'] = DB::table('about_us')->where('id', 1)->first()->des_image;
+        }
+        if ($request->hasFile('contact_image')) {
+            $data['contact_image'] = $request->file('contact_image')->store('uploads', 'public');
+        }else{
+            $data['contact_image'] = DB::table('about_us')->where('id', 1)->first()->contact_image;
+        }
+        unset($data['_token']);
+        unset($data['avatar_remove']);
+        unset($data['1']);
+
+        DB::table('about_us')->where('id', 1)->update($data);
         return redirect()->back()->with('success', 'Your record has been updated successfully.');
     }
 
