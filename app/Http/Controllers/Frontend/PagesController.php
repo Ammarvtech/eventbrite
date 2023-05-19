@@ -26,6 +26,7 @@ class PagesController extends Controller
     }
     public function aboutUs(){
         $page = DB::table('about_us')->first();
+        // dd($page);
         return response()->json(['data' => $page], 200);
     }
     public function contactUs(){

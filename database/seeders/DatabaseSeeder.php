@@ -34,6 +34,10 @@ class DatabaseSeeder extends Seeder
         \App\Models\Tournament::factory(10)->create();
         \App\Models\TournamentCategory::factory(10)->create();
         \App\Models\TournamentImage::factory(10)->create();
+        \App\Models\TournamentType::factory(10)->create();
+        \App\Models\NumberOfTeam::factory(10)->create();
+        \App\Models\TournamentFormat::factory(10)->create();
+        \App\Models\TournamentLevel::factory(10)->create();
 
 
         // \App\Models\Page::factory(10)->create();

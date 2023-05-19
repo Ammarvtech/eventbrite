@@ -36,6 +36,7 @@ Route::get('/faq', [PagesController::class, 'faq']);
 Route::post('/contact-us', [PagesController::class, 'saveContactUs']);
 
 // tournaments
+Route::get('/tournament-details', [TournamentController::class, 'getDetails']);
 Route::get('/tournaments', [TournamentController::class, 'getAll']);
 Route::get('/tournaments/{id}', [TournamentController::class, 'getById']);
 Route::post('/tournaments', [TournamentController::class, 'create']);

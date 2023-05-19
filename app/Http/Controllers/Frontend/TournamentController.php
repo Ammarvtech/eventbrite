@@ -7,9 +7,35 @@ use Illuminate\Http\Request;
 use App\Models\Tournament;
 use App\Models\TournamentImage;
 use App\Models\TournamentCategory;
+use App\Models\Category;
+use App\Models\TournamentType;
+use App\Models\EventCategory;
+use App\Models\Country;
+use App\Models\NumberOfTeam;
+use App\Models\TournamentFormat;
+use App\Models\TournamentLevel;
 
 class TournamentController extends Controller
 {
+    public function getDetails(){
+        $categories = Category::all();
+        $tournamentTypes = TournamentType::all();
+        $eventTyeps = EventCategory::all();
+        $countries = Country::all();
+        $numberOfTeams = NumberOfTeam::all();
+        $tournamentFormats = TournamentFormat::all();
+        $tournamentLevels = TournamentLevel::all();
+        return response()->json([
+            'categories' => $categories,
+            'tournamentTypes' => $tournamentTypes,
+            'eventTyeps' => $eventTyeps,
+            'countries' => $countries,
+            'numberOfTeams' => $numberOfTeams,
+            'tournamentFormats' => $tournamentFormats,
+            'tournamentLevels' => $tournamentLevels,
+        ], 200);
+    }
+
     public function getAll(){
         $tournaments = Tournament::with(['tournamentImages', 'tournamentCategories'])->where('is_active', 1)->get();
         return response()->json(['data' => $tournaments], 200);
@@ -21,6 +47,7 @@ class TournamentController extends Controller
     // save tournament
     public function create(Request $request){
         $data = $request->all();
+        dd($data);
         $tournament = Tournament::create($data);
         // save tournament images
         if($request->hasFile('images')){

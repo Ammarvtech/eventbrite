@@ -18,5 +18,4 @@ class Tournament extends Model
     {
         return $this->hasMany(TournamentCategory::class);
     }
-
 }
