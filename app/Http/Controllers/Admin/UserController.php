@@ -34,25 +34,40 @@ class UserController extends Controller
         $user = User::create($request->all());
         return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
     }
-    public function edit(User $user)
+    public function edit(User $user,$id)
     {
+        $user = User::find($id);
         return view('admin.users.edit', compact('user'));
     }
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $user,$id)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required',
-            'phone' => 'required|unique:users,phone,' . $user->id,
-            'email' => 'required|unique:users,email,' . $user->id,
-            'password' => 'required',
+            'phone' => 'required',
+            // 'email' => 'required|unique:users,email,' . $user->id,
+            //'password' => 'required',
             'role' => 'required',
         ]);
-        $user->update($request->all());
-        return redirect()->route('admin.users.index')->with('success', 'User updated successfully');
+        if(isset($request->password) && $request->password != " "){
+                $request->validate([
+                'password' => 'required|min:6',
+                'confirm_password' => 'required|min:6|max:20|same:password',
+                ]);    
+                $userData['password'] = bcrypt($request->password);
+        }
+        $userData['name']  =  $request->name;
+        $userData['phone_number']   =  $request->phone;
+        $userData['email']      =  $request->email;
+        $userData['status']      =  $request->status;
+        
+        User::where('id',$id)->update($userData);
+        return redirect()->route('admin.users.index')->with('flash_message_success', 'User updated successfully');
     }
-    public function destroy(User $user)
+    public function delete(User $user,$id)
     {
-        $user->delete();
+        
+        User::where('id',$id)->delete();
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully');
     }
 }

@@ -33,7 +33,7 @@
                     <div class="card card-flush">
 
                         @if(\Session::has('flash_message_success'))
-                        <div class="row">
+                        <div class="row" style="margin-top: 20px;">
                             <div class="col-md-6" style="margin-left: 30px;">
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     <strong>{!! session('flash_message_success') !!}</strong>
@@ -118,19 +118,18 @@
                                                     data-kt-menu="true">
                                            
                                                     <div class="menu-item px-3">
-                                                        {{-- <a href="{{ route('admin.users.edit', $user->id) }}"
-                                                            class="menu-link px-3">Edit</a> --}}
-                                                        <p
-                                                            class="menu-link px-3">Edit</p>
+                                                         <a href="{{ route('admin.users.edit', $user->id) }}"
+                                                            class="menu-link px-3">Edit</a> 
+                                                       {{-- <p class="menu-link px-3">Edit</p> --}}
                                                     </div>
                                             
                                                     <div class="menu-item px-3">
-                                                        {{-- <a href="javascript::" onclick="deleteRecord('{{ route('admin.users.destroy', $user->id) }}')"
-                                                            class="menu-link px-3"
-                                                            data-kt-ecommerce-category-filter="delete_row">Delete</a> --}}
-                                                        <a href="javascript::"
+                                                         <a href="javascript::" onclick="deleteRecord('{{ route('admin.users.destroy', $user->id) }}')"
                                                             class="menu-link px-3"
                                                             data-kt-ecommerce-category-filter="delete_row">Delete</a>
+                                                        {{--<a href="javascript::"
+                                                            class="menu-link px-3"
+                                                            data-kt-ecommerce-category-filter="delete_row">Delete</a> --}}
                                                     </div>
 
                                                 </div>
