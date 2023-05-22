@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrganizationController;
 use App\Http\Controllers\Admin\CmsController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\TournamentController;
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('login', [AuthController::class, 'loginForm'])->name('login');
@@ -31,6 +33,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('edit/{id}', [OrganizationController::class, 'edit'])->name('edit');
         Route::post('update/{id}', [OrganizationController::class, 'update'])->name('update');
         Route::get('delete/{id}', [OrganizationController::class, 'delete'])->name('destroy');
+    });
+    Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
+        Route::get('index', [UserController::class, 'index'])->name('index');
+        Route::get('create', [UserController::class, 'create'])->name('create');
+        Route::post('store', [UserController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [UserController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [UserController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [UserController::class, 'delete'])->name('destroy');
+    });
+    Route::group(['prefix' => 'tournaments', 'as' => 'tournaments.'], function () {
+        Route::get('index', [TournamentController::class, 'index'])->name('index');
+        Route::get('create', [TournamentController::class, 'create'])->name('create');
+        Route::post('store', [TournamentController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [TournamentController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [TournamentController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [TournamentController::class, 'delete'])->name('destroy');
     });
 
     // Route::group(['prefix' => 'products', 'as' => 'products.'], function () {

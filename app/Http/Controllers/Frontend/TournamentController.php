@@ -14,6 +14,7 @@ use App\Models\Country;
 use App\Models\NumberOfTeam;
 use App\Models\TournamentFormat;
 use App\Models\TournamentLevel;
+use App\Http\Requests\StoreTournamentRequest;
 
 class TournamentController extends Controller
 {
@@ -45,31 +46,35 @@ class TournamentController extends Controller
         return response()->json(['data' => $tournament], 200);
     }
     // save tournament
-    public function create(Request $request){
-        $data = $request->all();
-        dd($data);
+    public function create(StoreTournamentRequest $request){
+
+        $data = $request->validated();
         $tournament = Tournament::create($data);
+        if($tournament){
+            return response()->json(['message' => 'Tournament saved successfully'], 200);
+        }
+        return response()->json(['message' => 'Something went wrong'], 400);
         // save tournament images
-        if($request->hasFile('images')){
-            foreach($request->file('images') as $image){
-                $name = time().'_'.$image->getClientOriginalName();
-                $image->move(public_path('uploads/tournament'), $name);
-                $tournamentImage = new TournamentImage();
-                $tournamentImage->tournament_id = $tournament->id;
-                $tournamentImage->image = $name;
-                $tournamentImage->save();
-            }
-        }
-        // save tournament categories
-        if($request->has('categories')){
-            foreach($request->categories as $category){
-                $tournamentCategory = new TournamentCategory();
-                $tournamentCategory->tournament_id = $tournament->id;
-                $tournamentCategory->category_id = $category;
-                $tournamentCategory->save();
-            }
-        }
-        return response()->json(['message' => 'Tournament saved successfully'], 200);
+        // if($request->hasFile('images')){
+        //     foreach($request->file('images') as $image){
+        //         $name = time().'_'.$image->getClientOriginalName();
+        //         $image->move(public_path('uploads/tournament'), $name);
+        //         $tournamentImage = new TournamentImage();
+        //         $tournamentImage->tournament_id = $tournament->id;
+        //         $tournamentImage->image = $name;
+        //         $tournamentImage->save();
+        //     }
+        // }
+        // // save tournament categories
+        // if($request->has('categories')){
+        //     foreach($request->categories as $category){
+        //         $tournamentCategory = new TournamentCategory();
+        //         $tournamentCategory->tournament_id = $tournament->id;
+        //         $tournamentCategory->category_id = $category;
+        //         $tournamentCategory->save();
+        //     }
+        // }
+        // return response()->json(['message' => 'Tournament saved successfully'], 200);
     }
     // update tournament
     public function update(Request $request, $id){
