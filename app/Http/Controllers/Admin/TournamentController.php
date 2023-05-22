@@ -22,8 +22,13 @@ class TournamentController extends Controller
     }
     public function show($id)
     {
-        $tournament = Tournament::with('images','category','type')->findOrFail($id);
-
+        $tournament = Tournament::with(
+            'images',
+            'category',
+            'type',
+            'country',
+            )->findOrFail($id);
+        // return $tournament;
         return view('admin.tournaments.show', compact('tournament'));
     }
     public function create()
@@ -55,8 +60,17 @@ class TournamentController extends Controller
     public function destroy($id)
     {
         $tournament = Tournament::findOrFail($id);
-        $tournament->delete();
+        $tournament->is_active = 0;
+        $tournament->save();
         return redirect()->route('admin.tournaments.index')->with('success', 'Tournament deleted successfully');
+    }
+
+    public function activate($id)
+    {
+        $tournament = Tournament::findOrFail($id);
+        $tournament->is_active = 1;
+        $tournament->save();
+        return redirect()->route('admin.tournaments.index')->with('success', 'Tournament activated successfully');
     }
 
 

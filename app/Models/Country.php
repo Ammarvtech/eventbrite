@@ -9,4 +9,8 @@ class Country extends Model
 {
     use HasFactory;
     protected $table = 'countries';
+    public function tournaments()
+    {
+        return $this->hasMany(Tournament::class);
+    }
 }

@@ -53,8 +53,9 @@
                                         <th class="min-w-150px">Category</th>
                                         <th class="min-w-150px">Start Date</th>
                                         <th class="min-w-150px">End Date</th>
-                                        
-                                        <th class="min-w-150px">Teams</th>
+                                        <th class="min-w-50px">Teams</th>
+                                        <th class="min-w-50px">Status</th>
+                                        <th class="min-w-150px">Created at</th>
                                         <th class="text-end min-w-70px">Actions</th>
                                     </tr>
                           
@@ -88,10 +89,25 @@
                                             <td>
                                                 {{ $tournament->end_date }}
                                             </td>
+                                            <td>
+                                                <i class="fa fa-users"></i>
+                                                <strong>
+                                                {{ $tournament->number_of_teams }}
+                                                </strong>
+                                                
+                                            </td>
+                                            <td>
+                                                @if($tournament->is_active == 1)
+                                                <div class="badge badge-light-success">Active</div>
+                                                @else
+                                                <div class="badge badge-light-danger">Inactive</div>
+                                                @endif
+                                            </td>
                                          
                                             <td>
-                                                <div class="badge badge-light-primary">{{ $tournament->number_of_teams }}</div>
+                                                <div class="badge badge-light-primary">{{ $tournament->created_at }}</div>
                                             </td>
+                                            
                                             <!--end::Type=-->
                                             <!--begin::Action=-->
                                             <td class="text-end">
@@ -112,24 +128,26 @@
 
                                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
                                                     data-kt-menu="true">
-                                           
-                                                    <div class="menu-item px-3">
-                                                        {{-- <a href="{{ route('admin.users.edit', $user->id) }}"
-                                                            class="menu-link px-3">Edit</a> --}}
-                                                        <p
-                                                            class="menu-link px-3">Edit</p>
-                                                    </div>
+                                        
                                                     <div class="menu-item px-3">
                                                         <a href="{{ route('admin.tournaments.show', $tournament->id) }}"
                                                             class="menu-link px-3">Show</a>
                                                     </div>
                                             
                                                     <div class="menu-item px-3">
+                                                        @if ($tournament->is_active == 1)
                                                         <a href="javascript::" onclick="deleteRecord('{{ route('admin.tournaments.destroy', $tournament->id) }}')"
                                                             class="menu-link px-3"
-                                                            data-kt-ecommerce-category-filter="delete_row">Delete</a>
+                                                            data-kt-ecommerce-category-filter="delete_row">DeActivate</a>
+                                                        @else
+                                                            <a href="javascript::" onclick="activateRecord('{{ route('admin.tournaments.activate', $tournament->id) }}')"
+                                                            class="menu-link px-3"
+                                                            data-kt-ecommerce-category-filter="delete_row">Activate</a>
+                                                        @endif
+
                                                      
                                                     </div>
+
 
                                                 </div>
                           
@@ -159,6 +177,38 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
 <!-- Add an event listener to the delete button -->
 <script>
+function activateRecord(url) {
+    // Show the confirmation dialog box
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You want to Activate this Tournament!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+
+        confirmButtonText: 'Yes, Activate it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Send an AJAX request to the delete URL
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(result) {
+                    // Display a success message
+                    Swal.fire({
+                        title: 'Activated!',
+                        text: 'The record has been Activated.',
+                        icon: 'success'
+                    }).then((result) => {
+                        // Reload the page
+                        location.reload();
+                    });
+                }
+            });
+        }
+    });
+}
   function deleteRecord(url) {
     // Show the confirmation dialog box
     Swal.fire({
@@ -168,7 +218,7 @@
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Yes, DeActivate it!'
     }).then((result) => {
         if (result.isConfirmed) {
             // Send an AJAX request to the delete URL
@@ -179,7 +229,7 @@
                     // Display a success message
                     Swal.fire({
                         title: 'Deleted!',
-                        text: 'The record has been deleted.',
+                        text: 'The record has been DeActivated.',
                         icon: 'success'
                     }).then((result) => {
                         // Reload the page

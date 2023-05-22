@@ -70,4 +70,7 @@ class Tournament extends Model
     public function type(){
         return $this->belongsTo(TournamentType::class);
     }
+    public function country(){
+        return $this->belongsTo(Country::class);
+    }
 }
