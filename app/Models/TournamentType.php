@@ -9,4 +9,9 @@ class TournamentType extends Model
 { 
     use HasFactory;
     protected $table = 'tournament_types';
+
+    public function tournaments()
+    {
+        return $this->hasMany(Tournament::class);
+    }
 }

@@ -54,7 +54,7 @@ class Tournament extends Model
         'overview',
     ];
 
-    public function tournamentImages()
+    public function images()
     {
         return $this->hasMany(TournamentImage::class);
     }
@@ -66,5 +66,8 @@ class Tournament extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+    public function type(){
+        return $this->belongsTo(TournamentType::class);
     }
 }

@@ -22,7 +22,8 @@ class TournamentController extends Controller
     }
     public function show($id)
     {
-        $tournament = Tournament::findOrFail($id);
+        $tournament = Tournament::with('images','category','type')->findOrFail($id);
+
         return view('admin.tournaments.show', compact('tournament'));
     }
     public function create()

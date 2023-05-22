@@ -46,35 +46,38 @@ class TournamentController extends Controller
         return response()->json(['data' => $tournament], 200);
     }
     // save tournament
-    public function create(StoreTournamentRequest $request){
+    public function upload(Request $request){
 
-        $data = $request->validated();
+        $data = $request->all();
+        if($request->hasFile('files')){
+            return response()->json(['abc' => $data], 200);
+        }
+    }
+    // save tournament
+    public function create(Request $request){
+
+        $data = $request->all();
         $tournament = Tournament::create($data);
+
+        if ($request->hasFile('banners')) {
+            $image = $request->file('banners')->store('uploads', 'public');
+            $tournamentImage = new TournamentImage();
+            $tournamentImage->tournament_id = $tournament->id;
+            $tournamentImage->image = $image;
+            $tournamentImage->save();
+        }
+        if ($request->hasFile('logos')) {
+            $image = $request->file('logos')->store('uploads', 'public');
+            $tournamentImage = new TournamentImage();
+            $tournamentImage->tournament_id = $tournament->id;
+            $tournamentImage->image = $image;
+            $tournamentImage->save();
+        }
+
         if($tournament){
             return response()->json(['message' => 'Tournament saved successfully'], 200);
         }
         return response()->json(['message' => 'Something went wrong'], 400);
-        // save tournament images
-        // if($request->hasFile('images')){
-        //     foreach($request->file('images') as $image){
-        //         $name = time().'_'.$image->getClientOriginalName();
-        //         $image->move(public_path('uploads/tournament'), $name);
-        //         $tournamentImage = new TournamentImage();
-        //         $tournamentImage->tournament_id = $tournament->id;
-        //         $tournamentImage->image = $name;
-        //         $tournamentImage->save();
-        //     }
-        // }
-        // // save tournament categories
-        // if($request->has('categories')){
-        //     foreach($request->categories as $category){
-        //         $tournamentCategory = new TournamentCategory();
-        //         $tournamentCategory->tournament_id = $tournament->id;
-        //         $tournamentCategory->category_id = $category;
-        //         $tournamentCategory->save();
-        //     }
-        // }
-        // return response()->json(['message' => 'Tournament saved successfully'], 200);
     }
     // update tournament
     public function update(Request $request, $id){

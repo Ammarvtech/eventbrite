@@ -63,9 +63,9 @@ class StoreTournamentRequest extends FormRequest
             'roles_and_responsibilities' => 'required|string',
             'sponsor_information' => 'required|string',
             // 'overview' => 'required|string',
-            // 'logos' => 'required|array',
+            'logos' => 'required|array',
             // 'logos.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            // 'banners' => 'required|array',
+            'banners' => 'required|array',
             // 'banners.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
