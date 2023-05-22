@@ -54,7 +54,7 @@
                                         <th class="min-w-150px">Start Date</th>
                                         <th class="min-w-150px">End Date</th>
                                         
-                                        <th class="min-w-150px">Created at</th>
+                                        <th class="min-w-150px">Teams</th>
                                         <th class="text-end min-w-70px">Actions</th>
                                     </tr>
                           
@@ -90,7 +90,7 @@
                                             </td>
                                          
                                             <td>
-                                                <div class="badge badge-light-primary">{{ $tournament->created_at }}</div>
+                                                <div class="badge badge-light-primary">{{ $tournament->number_of_teams }}</div>
                                             </td>
                                             <!--end::Type=-->
                                             <!--begin::Action=-->
