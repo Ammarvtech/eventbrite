@@ -46,8 +46,42 @@ class CmsController extends Controller
     }
     public function about()
     {
+
         $about = DB::table('about_us')->where('id', 1)->first();
         return view('admin.cms.about', compact('about'));
+    }
+    public function home()
+    { 
+        $home = DB::table('home_cms')->where('id', 1)->first();
+        return view('admin.cms.home', compact('home'));
+    }
+     public function homeSubmit(Request $request){
+        
+        // $request->validate([
+        //     'title' => 'required',
+        //     'heading' => 'required',
+        //     'description' => 'required',
+        //     'btn_text' => 'required',
+        //     'btn_link' => 'required',
+        // ]);
+        $data = $request->all();
+        if ($request->hasFile('banner_img')) {
+            $data['banner_img'] = $request->file('banner_img')->store('uploads', 'public');
+        }else{
+            $data['banner_img'] = DB::table('home_cms')->where('id', 1)->first()->banner_img;
+        }
+        if ($request->hasFile('resource_img')) {
+            $data['resource_img'] = $request->file('resource_img')->store('uploads', 'public');
+        }else{
+            $data['resource_img'] = DB::table('home_cms')->where('id', 1)->first()->resource_img;
+        }
+       
+        unset($data['_token']);
+        unset($data['avatar_remove']);
+        unset($data['1']);
+
+        DB::table('home_cms')->where('id', 1)->update($data);
+        return redirect()->back()->with('success', 'Your record has been updated successfully.');
     }
 
     public function aboutSubmit(Request $request){

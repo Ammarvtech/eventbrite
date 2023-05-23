@@ -31,7 +31,7 @@
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <div id="kt_app_content_container" class="app-container container-xxl">
                     <form 
-                        action="{{route('admin.cms.contactSubmit', $contact->id)}}"
+                        action="{{route('admin.cms.contactSubmit', $contact->id??null)}}"
                         method="POST"  
                         enctype="multipart/form-data" 
                         id="kt_ecommerce_add_category_form" 

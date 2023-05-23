@@ -150,11 +150,19 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="{{ route('admin.cms-pages.index') }}">
+                            <a class="menu-link" href="{{ route('admin.faq.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Manage Faqs</span>
+                            </a>
+                        </div>
+                         <div class="menu-item">
+                            <a class="menu-link" href="{{ route('admin.cms.home') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Manage Home</span>
                             </a>
                         </div>
                     </div>

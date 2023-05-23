@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrganizationController;
 use App\Http\Controllers\Admin\CmsController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\TournamentController;
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
@@ -107,7 +108,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/contact-us', [CmsController::class, 'contact'])->name('contact');
         Route::post('/contact-us/{id}', [CmsController::class, 'contactSubmit'])->name('contactSubmit');
         Route::get('/about-us', [CmsController::class, 'about'])->name('about');
+        Route::get('/home', [CmsController::class, 'home'])->name('home');
+        Route::post('/home', [CmsController::class, 'homeSubmit'])->name('homeSubmit');
         Route::post('/about-us', [CmsController::class, 'aboutSubmit'])->name('aboutSubmit');
+    });
+    Route::group(['prefix' => 'faq', 'as' => 'faq.'], function () {
+        Route::get('index', [FaqController::class, 'index'])->name('index');
+        Route::get('create', [FaqController::class, 'create'])->name('create');
+        Route::post('store', [FaqController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [FaqController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [FaqController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [FaqController::class, 'delete'])->name('destroy');
     });
 
 });
