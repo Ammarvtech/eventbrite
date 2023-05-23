@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('status')->default('active');
             $table->string('role')->default('player')->enum('organizer', 'admin', 'player');
+            $table->string('verify_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -44,7 +44,10 @@ Route::post('/upload', [TournamentController::class, 'upload']);
 Route::put('/tournaments/{id}', [TournamentController::class, 'update']);
 Route::delete('/tournaments/{id}', [TournamentController::class, 'delete']);
 
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
 
+    event(new Verified($request->user()));
 
-
-
+    return redirect('/'); // Or you can redirect to any other page after successful email verification
+})->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
