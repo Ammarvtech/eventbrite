@@ -244,8 +244,8 @@
                                 <!--begin::Card body-->
                                 <div class="card-body pt-0">
                                     <!--begin::Input group-->
-                                    <div class="mb-10 fv-row">
-                                        <label class="required form-label">User Name</label>
+                                    <div class="fv-row">
+                                        <label class="required form-label">Full Name</label>
                                         <input type="text" name="name" class="form-control mb-2" placeholder="User name" value="{{$user->name}}" />
                                     </div>
                                 </div>
@@ -254,8 +254,8 @@
                                 <!--begin::Card body-->
                                 <div class="card-body pt-0">
                                     <!--begin::Input group-->
-                                    <div class="mb-10 fv-row">
-                                        <label class="required form-label">Email</label>
+                                    <div class="fv-row">
+                                        <label class="required form-label">Email Address</label>
                                         <input type="text" name="email" class="form-control mb-2" placeholder="User Email" value="{{$user->email}}" />
                                     </div>
                                 </div>
@@ -263,16 +263,107 @@
                                 <!--begin::Card body-->
                                 <div class="card-body pt-0">
                                     <!--begin::Input group-->
-                                    <div class="mb-10 fv-row">
-                                        <label class="required form-label">Phone No</label>
+                                    <div class="fv-row">
+                                        <label class="required form-label">Phone Number</label>
                                         <input type="number" name="phone" class="form-control mb-2" placeholder="User Phone" value="{{$user->phone_number}}" />
+                                    </div>
+                                </div>
+                                <!--end::Card header-->
+                                 <!--begin::Card body-->
+                                <div class="card-body pt-0">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row">
+                                        <label class="form-label">Country</label>
+                                        <select class="form-select" name="country">
+                                                <option>Select</option>
+                                                @foreach($countries as $coun)
+                                                <option value="{{ $coun->id }}" @if($coun->id == $user->country) selected @endif>{{ $coun->name}}</option>
+                                                @endforeach
+                                            </select>
                                     </div>
                                 </div>
                                 <!--end::Card header-->
                                 <!--begin::Card body-->
                                 <div class="card-body pt-0">
                                     <!--begin::Input group-->
-                                    <div class="mb-10 fv-row">
+                                    <div class="fv-row">
+                                        <label class="form-label">City</label>
+                                        <input type="text" name="city" class="form-control mb-2" placeholder="User City" value="{{$user->city}}" />
+                                    </div>
+                                </div>
+                                <!--end::Card header-->
+                                 <!--begin::Card body-->
+                                <div class="card-body pt-0">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row">
+                                        <label class="form-label">Postal code</label>
+                                        <input type="text" name="postal_code" class="form-control mb-2" placeholder="User postal code" value="{{$user->postal_code}}" />
+                                    </div>
+                                </div>
+                                <!--end::Card header-->
+                                <!--begin::Card body-->
+                                <div class="card-body pt-0">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row">
+                                        <label class="form-label">Address</label>
+                                        <input type="text" name="address" class="form-control mb-2" placeholder="User postal code" value="{{$user->address}}" />
+                                    </div>
+                                </div>
+                                <!--end::Card header-->
+                                <!--begin::Card body-->
+                                <div class="card-body pt-0">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row">
+                                        <label class="form-label">Organization Name</label>
+                                        <input type="text" name="org_name" class="form-control mb-2" placeholder="User Email" value="{{$user->org_name}}" />
+                                    </div>
+                                </div>
+                                <!--end::Card header-->
+                                <!--begin::Card body-->
+                                <div class="card-body pt-0">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row">
+                                        <label class="form-label">Organization Website</label>
+                                        <input type="text" name="org_website" class="form-control mb-2" placeholder="User Email" value="{{$user->org_website}}" />
+                                    </div>
+                                </div>
+                                <!--end::Card header-->
+                                 <!--begin::Card body-->
+                                <div class="card-body pt-0">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row">
+                                        <label class="form-label">Mailing Address</label>
+                                        <input type="text" name="org_mailing_address" class="form-control mb-2" placeholder="User Email" value="{{$user->org_mailing_address}}" />
+                                    </div>
+                                </div>
+                                <!--end::Card header-->
+                                 <!--begin::Card body-->
+                                <div class="card-body pt-0">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row">
+                                        <label class="form-label">Preferred Communication Method</label>
+                                         <select class="form-select" name="org_communication_method">
+                                                <option>Select</option>
+                                                <option value="email" @if($user->org_communication_method == 'email') selected @endif>Email</option>
+                                                <option value="phone" @if($user->org_communication_method == 'phone') selected @endif>Phone</optio>      
+                                                <option value="Messaging app" @if($user->org_communication_method == 'Messaging app') selected @endif>Messaging App</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <!--end::Card header-->
+                                <!--begin::Card body-->
+                                <div class="card-body pt-0">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row">
+                                        <label class="form-label">Time Zone</label>
+                                        <input type="text" name="org_timezone" class="form-control mb-2" placeholder="Time Zone" value="{{$user->org_timezone}}" />
+                                    </div>
+                                </div>
+                                <!--end::Card header-->
+                                <!--begin::Card body-->
+                                <div class="card-body pt-0">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row">
                                         <label class="form-label">Password</label>
                                         <input type="text" name="password" class="form-control mb-2" placeholder="Password" />
                                     </div>
@@ -281,7 +372,7 @@
                                 <!--begin::Card body-->
                                 <div class="card-body pt-0">
                                     <!--begin::Input group-->
-                                    <div class="mb-10 fv-row">
+                                    <div class="fv-row">
                                         <label class="form-label">Confirm Password</label>
                                         <input type="text" name="confirm_password" class="form-control mb-2" placeholder="Password"/>
                                     </div>
@@ -291,7 +382,7 @@
                                   <!--begin::Card body-->
                                 <div class="card-body pt-0">
                                     <!--begin::Input group-->
-                                    <div class="mb-10 fv-row">
+                                    <div class="fv-row">
                                         <label class="required form-label">Role</label>
                                          <select class="form-select" name="role">
                                                 <option>Select Role</option>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Components\Services\OrganizationService;
 use App\Models\User;
+use App\Models\Country;
 
 class UserController extends Controller
 {
@@ -37,7 +38,8 @@ class UserController extends Controller
     public function edit(User $user,$id)
     {
         $user = User::find($id);
-        return view('admin.users.edit', compact('user'));
+        $countries = Country::get();
+        return view('admin.users.edit', compact('user','countries'));
     }
     public function update(Request $request, User $user,$id)
     {
@@ -45,8 +47,6 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'phone' => 'required',
-            // 'email' => 'required|unique:users,email,' . $user->id,
-            //'password' => 'required',
             'role' => 'required',
         ]);
         if(isset($request->password) && $request->password != " "){
@@ -60,13 +60,22 @@ class UserController extends Controller
         $userData['phone_number']   =  $request->phone;
         $userData['email']      =  $request->email;
         $userData['status']      =  $request->status;
+        $userData['org_name']      =  $request->org_name;
+        $userData['org_website']      =  $request->org_website;
+        $userData['org_mailing_address']      =  $request->org_mailing_address;
+        $userData['org_communication_method']      =  $request->org_communication_method;
+        $userData['org_timezone']      =  $request->org_timezone;
+        $userData['country']      =  $request->country;
+        $userData['city']      =  $request->city;
+        $userData['postal_code']      =  $request->postal_code;
+        $userData['address']      =  $request->address;
         
         User::where('id',$id)->update($userData);
         return redirect()->route('admin.users.index')->with('flash_message_success', 'User updated successfully');
     }
     public function delete(User $user,$id)
     {
-        
+
         User::where('id',$id)->delete();
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully');
     }
