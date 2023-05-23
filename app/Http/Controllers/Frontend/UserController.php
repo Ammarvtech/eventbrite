@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -45,6 +46,8 @@ class UserController extends Controller
             return response()->json(['error' => $validator->errors()], 422);
         }
         
+        // creaet 6 digit toekn
+        $token = mt_rand(100000, 999999);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -60,22 +63,39 @@ class UserController extends Controller
             'postal_code' => $request->postal_code,
             'address' => $request->address,
             'password' => bcrypt($request->password),
+            'verify_token' => $token,
         ]);
 
-        $credentials = $request->only('email', 'password');
-        if (!Auth::attempt($credentials)) {
-            return response()->json([
-                'message' => 'Unauthorized',
-            ], 401);
-        } else {
-            $user = Auth::user();
-            $token = $user->createToken('authToken')->plainTextToken;
-            return response()->json([
-                'message' => 'User registered successfully',
-                'user' => $user,
-                'token' => $token,
-            ], 201);
-        }
+
+        return response()->json([
+            'message' => 'Registration successful, please verify your email',
+            'user' => $user,
+        ], 201);
+
+
+
+        // send email verification link using laravel mail
+        // return response()->json([
+        //     'message' => 'User registered successfully',
+        //     'user' => $user,
+        // ], 201);
+
+
+
+        // $credentials = $request->only('email', 'password');
+        // if (!Auth::attempt($credentials)) {
+        //     return response()->json([
+        //         'message' => 'Unauthorized',
+        //     ], 401);
+        // } else {
+        //     $user = Auth::user();
+        //     $token = $user->createToken('authToken')->plainTextToken;
+        //     return response()->json([
+        //         'message' => 'User registered successfully',
+        //         'user' => $user,
+        //         'token' => $token,
+        //     ], 201);
+        // }
     }
 
     public function login(Request $request)
