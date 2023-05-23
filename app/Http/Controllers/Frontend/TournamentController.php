@@ -58,22 +58,27 @@ class TournamentController extends Controller
 
         $data = $request->all();
         $tournament = Tournament::create($data);
-
-        if ($request->hasFile('banners')) {
-            $image = $request->file('banners')->store('uploads', 'public');
-            $tournamentImage = new TournamentImage();
-            $tournamentImage->tournament_id = $tournament->id;
-            $tournamentImage->image = $image;
-            $tournamentImage->save();
-        }
         if ($request->hasFile('logos')) {
-            $image = $request->file('logos')->store('uploads', 'public');
-            $tournamentImage = new TournamentImage();
-            $tournamentImage->tournament_id = $tournament->id;
-            $tournamentImage->image = $image;
-            $tournamentImage->save();
+            foreach($data['logos'] as $logo){
+                $logo = $logo->store('uploads', 'public');
+                $tournamentImage = new TournamentImage();
+                $tournamentImage->tournament_id = $tournament->id;
+                $tournamentImage->caption = 'logo';
+                $tournamentImage->image = $logo;
+                $tournamentImage->save();
+            }
         }
-
+        if ($request->hasFile('banners')) {
+            foreach($data['banners'] as $logo){
+                $banner = $logo->store('uploads', 'public');
+                $tournamentImage = new TournamentImage();
+                $tournamentImage->tournament_id = $tournament->id;
+                $tournamentImage->caption = 'banner';
+                $tournamentImage->image = $banner;
+                $tournamentImage->save();
+            }
+        }
+    
         if($tournament){
             return response()->json(['message' => 'Tournament saved successfully'], 200);
         }

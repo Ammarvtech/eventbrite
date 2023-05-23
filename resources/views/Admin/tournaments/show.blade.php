@@ -39,15 +39,12 @@
                                         <div class="border border-gray-300 border-dashed rounded py-3 px-3 mb-3">
                                             <div class="fs-4 fw-bolder text-gray-700">
                                                 <span class="w-20px">
-                                                    {{-- {{$tournament->start_date}} --}}
                                                     {{ Carbon\Carbon::parse($tournament->start_date)->format('Y-m-d') }}
                                                 </span>
                                                 
                                             </div>
                                             <div class="fw-bold text-muted">Start Date</div>
                                         </div>
-                                        <!--end::Stats-->
-                                        <!--begin::Stats-->
                                         <div class="border border-gray-300 border-dashed rounded py-3 px-3 mx-4 mb-3">
                                             <div class="fs-4 fw-bolder text-gray-700">
                                            
@@ -56,8 +53,17 @@
                                             </div>
                                             <div class="fw-bold text-muted">End Date</div>
                                         </div>
-                                        <!--end::Stats-->
-                                      
+                                    </div>
+                                    <div class="d-flex flex-wrap flex-center">
+                          
+                                        <div class="border border-gray-300 border-dashed rounded py-3 px-3 mx-4 mb-3">
+                                            <div class="fs-4 fw-bolder text-gray-700">
+                                           
+                                                {{ Carbon\Carbon::parse($tournament->registration_dead_line)->format('Y-m-d') }}
+                                               
+                                            </div>
+                                            <div class="fw-bold text-muted">Registration Deadline</div>
+                                        </div>
                                     </div>
                                     <!--end::Info-->
                                 </div>

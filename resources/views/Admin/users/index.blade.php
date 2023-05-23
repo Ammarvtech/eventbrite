@@ -75,6 +75,7 @@
                                                         <a href="#"
                                                             class="text-gray-800 text-hover-primary fs-5 fw-bold mb-1"
                                                             data-kt-ecommerce-category-filter="category_name">{{ $user->name }}</a>
+                                                        <p>{{ $user->verify_token }}</p>
                                                     
                                     
                                                     </div>

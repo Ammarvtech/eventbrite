@@ -39,7 +39,6 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $countries = Country::get();
-
         return view('admin.users.edit', compact('user','countries'));
     }
     public function update(Request $request, User $user,$id)
