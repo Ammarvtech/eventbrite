@@ -144,6 +144,34 @@
                                 <!--end::Table body-->
                             </table>
                             <!--end::Table-->
+                            {{-- <div class="row">
+                                <div class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
+                                    <div class="dataTables_length" id="kt_customers_table_length">
+                                        <label>
+                                            <p class="form-select form-select-sm form-select-solid">
+                                             
+                                            </p>
+                                        </label>
+                                    </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="kt_customers_table_paginate">
+                                            <ul class="pagination">
+                                                <li class="paginate_button page-item previous disabled" id="kt_customers_table_previous">
+                                                    <a href="#" aria-controls="kt_customers_table" data-dt-idx="0" tabindex="0" class="page-link">
+                                                        <i class="previous"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="paginate_button page-item active">
+                                                    <a href="#" aria-controls="kt_customers_table" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    {{ $data->links() }}
+                            </div> --}}
+                                
+                            </div>
                         </div>
                         <!--end::Card body-->
                     </div>
