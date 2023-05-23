@@ -129,5 +129,25 @@ class PagesTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        DB::table('home_cms')->insert([
+            'banner_img' => '/banner.jpg',
+            'banner_title' => 'Home Banner Title',
+            'banner_des' => 'Home Banner Description',
+            'gamers_title' => 'Home Gamers Title',
+            'gamers_sub_title' => 'Home Gamers Sub Title',
+            'gamers_des' => 'Home Gamers Description',
+            'resource_title' => 'Home Resource Title',
+            'resource_sub_title' => 'Home Resource Sub Title',
+            'resource_des' => 'Home Resource Description',
+            'resource_btn_txt' => 'Home Resource Button Text',
+            'resource_btn_link' => 'www.google.com',
+            'resource_img' => '/resource.jpg',
+            'tournament_title' => 'Home Tournament Title',
+            'tournament_des' => 'Home Tournament Description',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
     }
 }
