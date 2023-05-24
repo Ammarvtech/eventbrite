@@ -168,7 +168,7 @@
                     </div>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link" href="{{ route('admin.dashboard.index') }}">
+                    <a class="menu-link" href="{{ route('admin.contactus.index') }}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
