@@ -18,6 +18,7 @@ class TournamentFactory extends Factory
     {
         return [
             'title' => 'Tournament-' . $this->faker->numberBetween(1, 10). ' ' . $this->faker->word,
+            'user_id' => \App\Models\User::factory(),
             'slug' => 'tournament-' . $this->faker->numberBetween(1, 10). ' ' . $this->faker->word,
             'category_id' => \App\Models\Category::factory(),
             'type' => \App\Models\TournamentType::factory(),
@@ -29,6 +30,8 @@ class TournamentFactory extends Factory
             'city' => $this->faker->city,
             'postal_code' => $this->faker->word,
             'address' => $this->faker->text,
+            'latitude' => fake()->latitude,
+            'longitude' => fake()->longitude,
             'number_of_teams' => $this->faker->numberBetween(1, 100),
             'format' => $this->faker->word,
             'prize_distribution' => $this->faker->word,

@@ -38,7 +38,7 @@ class TournamentController extends Controller
     }
 
     public function getAll(){
-        $tournaments = Tournament::with(['tournamentImages', 'tournamentCategories'])->where('is_active', 1)->get();
+        $tournaments = Tournament::with(['images', 'tournamentCategories','category'])->where('is_active', 1)->get();
         return response()->json(['data' => $tournaments], 200);
     }
     public function getTournament($id){

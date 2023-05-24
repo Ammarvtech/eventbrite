@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('tournaments', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id')->nullable();
             $table->string('title')->nullable();
             $table->string('slug')->nullable();
             $table->string('category_id')->nullable();
@@ -25,6 +26,8 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('postal_code')->nullable();
             $table->text('address')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->string('number_of_teams')->nullable();
             $table->string('format')->nullable();
             $table->string('prize_distribution')->nullable();

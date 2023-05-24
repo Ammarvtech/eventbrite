@@ -14,7 +14,6 @@ class TournamentController extends Controller
     public function index()
     {
         $tournament = Tournament::with('category')->latest()->paginate(10);
-
         return view('admin.tournaments.index',
             [
                 'data' => $tournament,
