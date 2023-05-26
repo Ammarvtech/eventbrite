@@ -27,7 +27,7 @@ class TournamentController extends Controller
             'type',
             'country',
             )->findOrFail($id);
-
+        return  $tournament;
         return view('admin.tournaments.show', compact('tournament'));
     }
     public function create()

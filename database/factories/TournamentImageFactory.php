@@ -18,7 +18,7 @@ class TournamentImageFactory extends Factory
     {
         return [
             'tournament_id' => \App\Models\Tournament::factory(),
-            'image' => $this->faker->imageUrl(),
+            'image' => 'uploads/agxRYBPTIfTEMltHteNcL09Dl11UemosSVj9hy4w.jpg',
             'caption' => $this->faker->word,
             'is_primary' => $this->faker->boolean,
             'is_active' => $this->faker->boolean,

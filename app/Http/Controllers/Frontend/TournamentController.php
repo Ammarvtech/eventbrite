@@ -37,8 +37,48 @@ class TournamentController extends Controller
         ], 200);
     }
 
-    public function getAll(){
-        $tournaments = Tournament::with(['images', 'tournamentCategories','category'])->where('is_active', 1)->get();
+    public function getAll(Request $request){
+        $sort = 'desc';
+        if($request->has('sort')){
+            $sort = $request->sort;
+        }
+        $tournaments = Tournament::with(['images', 'tournamentCategories','category'])
+            ->where('is_active', 1)
+            ->orderBy('id', $sort)
+            ->latest()
+            ->paginate(10);
+        if($request->has('category') || $request->has('postal_code')){
+            if($request->category != ""){
+                $tournaments = Tournament::with(['images', 'tournamentCategories','category'])->where('is_active', 1)
+                ->whereHas('category', function($query) use ($request){
+                    $query->where('name', $request->category);
+                })
+                ->orderBy('id', $sort)
+                ->paginate(10);
+            }
+            if($request->postal_code != ""){
+                $tournaments = Tournament::with(['images', 'tournamentCategories','category'])->where('is_active', 1)
+                ->where('postal_code', $request->postal_code)
+                ->orderBy('id', $sort)
+                ->paginate(10);
+            }
+            if($request->category != "" && $request->postal_code != ""){
+                $tournaments = Tournament::with(['images', 'tournamentCategories','category'])->where('is_active', 1)
+                ->whereHas('category', function($query) use ($request){
+                    $query->where('name', $request->category);
+                })
+                ->orWhere('postal_code', $request->postal_code)
+                ->orderBy('id', $sort)
+                ->paginate(10);
+            }
+            // $tournaments = Tournament::with(['images', 'tournamentCategories','category'])->where('is_active', 1)
+            // ->whereHas('category', function($query) use ($request){
+            //     $query->where('name', $request->category);
+            // })
+            // ->orWhere('postal_code', $request->postal_code)
+            // ->orderBy('id', 'desc')
+            // ->paginate(10);
+        }
         return response()->json(['data' => $tournaments], 200);
     }
     public function getTournament($id){

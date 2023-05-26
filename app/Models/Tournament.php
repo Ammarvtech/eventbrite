@@ -23,6 +23,8 @@ class Tournament extends Model
         'city',
         'postal_code',
         'address',
+        'latitude',
+        'longitude',
         'number_of_teams',
         'format',
         'prize_distribution',
