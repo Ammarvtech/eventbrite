@@ -19,6 +19,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
+        Route::get('/profile/{id}', [DashboardController::class, 'profile'])->name('profile');
+        Route::post('/profile/{id}', [DashboardController::class, 'updateProfile'])->name('updateProfile');
     });
 
     Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
