@@ -12,6 +12,12 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\TournamentController;
 use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\TournamenttypeController;
+use App\Http\Controllers\Admin\TournamentFormatController;
+use App\Http\Controllers\Admin\TournamentLevelController;
+use App\Http\Controllers\Admin\TournamentTeamController;
+use App\Http\Controllers\Admin\BookingIntrestController;
+use App\Http\Controllers\Admin\TournamentEventController;
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('login', [AuthController::class, 'loginForm'])->name('login');
@@ -136,6 +142,54 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('edit/{id}', [BookingController::class, 'edit'])->name('edit');
         Route::post('update/{id}', [BookingController::class, 'update'])->name('update');
         Route::get('delete/{id}', [BookingController::class, 'delete'])->name('destroy');
+    });
+     Route::group(['prefix' => 'booking-intrests', 'as' => 'booking-intrests.'], function () {
+        Route::get('index', [BookingIntrestController::class, 'index'])->name('index');
+        Route::get('create', [BookingIntrestController::class, 'create'])->name('create');
+        Route::post('store', [BookingIntrestController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [BookingIntrestController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [BookingIntrestController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [BookingIntrestController::class, 'delete'])->name('destroy');
+    });
+    Route::group(['prefix' => 'tournaments-types', 'as' => 'tournaments-types.'], function () {
+        Route::get('index', [TournamenttypeController::class, 'index'])->name('index');
+        Route::get('create', [TournamenttypeController::class, 'create'])->name('create');
+        Route::post('store', [TournamenttypeController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [TournamenttypeController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [TournamenttypeController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [TournamenttypeController::class, 'delete'])->name('destroy');
+    });
+    Route::group(['prefix' => 'tournaments-formats', 'as' => 'tournaments-formats.'], function () {
+        Route::get('index', [TournamentFormatController::class, 'index'])->name('index');
+        Route::get('create', [TournamentFormatController::class, 'create'])->name('create');
+        Route::post('store', [TournamentFormatController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [TournamentFormatController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [TournamentFormatController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [TournamentFormatController::class, 'delete'])->name('destroy');
+    });
+    Route::group(['prefix' => 'tournaments-levels', 'as' => 'tournaments-levels.'], function () {
+        Route::get('index', [TournamentLevelController::class, 'index'])->name('index');
+        Route::get('create', [TournamentLevelController::class, 'create'])->name('create');
+        Route::post('store', [TournamentLevelController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [TournamentLevelController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [TournamentLevelController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [TournamentLevelController::class, 'delete'])->name('destroy');
+    });
+    Route::group(['prefix' => 'tournaments-teams', 'as' => 'tournaments-teams.'], function () {
+        Route::get('index', [TournamentTeamController::class, 'index'])->name('index');
+        Route::get('create', [TournamentTeamController::class, 'create'])->name('create');
+        Route::post('store', [TournamentTeamController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [TournamentTeamController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [TournamentTeamController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [TournamentTeamController::class, 'delete'])->name('destroy');
+    });
+    Route::group(['prefix' => 'tournaments-events', 'as' => 'tournaments-events.'], function () {
+        Route::get('index', [TournamentEventController::class, 'index'])->name('index');
+        Route::get('create', [TournamentEventController::class, 'create'])->name('create');
+        Route::post('store', [TournamentEventController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [TournamentEventController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [TournamentEventController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [TournamentEventController::class, 'delete'])->name('destroy');
     });
     
         Route::get('forget_password', [DashboardController::class, 'forgetPassword'])->name('forgetPassword');

@@ -9,6 +9,11 @@ class Intrest extends Model
 {
     use HasFactory;
     protected $table = 'Intrests';
+    protected $fillable = [
+        'full_name',
+        'booking_id',
+        'is_active'
+    ];
 
     public function booking()
     {

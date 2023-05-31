@@ -9,4 +9,8 @@ class TournamentLevel extends Model
 {
     use HasFactory;
     protected $table = 'tournament_levels';
+    protected $fillable = [
+    'level',
+    'is_active'
+];
 }

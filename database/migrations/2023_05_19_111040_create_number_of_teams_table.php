@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('created_ip')->nullable();
             $table->string('updated_ip')->nullable();
             $table->string('deleted_ip')->nullable();
+            $table->string('is_active')->default(1);
         });
     }
 
