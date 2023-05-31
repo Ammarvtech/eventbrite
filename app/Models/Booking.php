@@ -9,4 +9,13 @@ class Booking extends Model
 {
     use HasFactory;
     protected $table = 'bookings';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function intrests()
+    {
+        return $this->hasMany(Intrest::class);
+    }
 }

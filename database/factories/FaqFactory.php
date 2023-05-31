@@ -18,11 +18,11 @@ class FaqFactory extends Factory
     {
         return [
             'question' => $this->faker->sentence,
-            'answer' => $this->faker->paragraph,
+            'answer' => $this->faker->sentence,
             'is_active' => true,
             'order' => 0,
             'meta_title' => $this->faker->sentence,
-            'meta_description' => $this->faker->paragraph,
+            'meta_description' => $this->faker->sentence,
             'meta_keywords' => $this->faker->sentence,
         ];
     }

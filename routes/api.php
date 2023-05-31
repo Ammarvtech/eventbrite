@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\PagesController;
 use App\Http\Components\Services\CountryService;
 use App\Http\Controllers\Frontend\TournamentController;
 use App\Http\Controllers\Frontend\ProfileController;
+use App\Http\Controllers\Frontend\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,10 @@ Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/verify-code', [UserController::class, 'verifyCode']);
 Route::get('/countries', [CountryService::class, 'getAll']);
+
+// booking
+Route::get('/bookings', [BookingController::class, 'getAll']);
+
 
 // profile
 Route::post('/get-user-profile', [ProfileController::class, 'getUserProfile']);

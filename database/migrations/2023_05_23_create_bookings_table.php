@@ -15,15 +15,19 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->integer("user_id")->nullable();
+            $table->string('otp')->nullable();
             $table->string('full_name')->nullable();
             $table->string('email')->nullable();
+            $table->string('phone')->nullable();
             $table->text('tournament_title')->nullable();
-            $table->string('country_id')->nullable();
+            $table->integer('country_id')->nullable();
             $table->string('state')->nullable();
             $table->text('city')->nullable();
             $table->string('zip_code')->nullable();
             $table->string('address')->nullable();
             $table->string('description')->nullable();  
+            $table->boolean('is_active')->default(1);
             $table->timestamps();
         });
     }
