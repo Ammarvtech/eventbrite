@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\CmsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\TournamentController;
+use App\Http\Controllers\Admin\ContactUsController;
+use App\Http\Controllers\Admin\BookingController;
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('login', [AuthController::class, 'loginForm'])->name('login');
@@ -119,6 +121,19 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('edit/{id}', [FaqController::class, 'edit'])->name('edit');
         Route::post('update/{id}', [FaqController::class, 'update'])->name('update');
         Route::get('delete/{id}', [FaqController::class, 'delete'])->name('destroy');
+    });
+    Route::group(['prefix' => 'contactus', 'as' => 'contactus.'], function () {
+        Route::get('index', [ContactUsController::class, 'index'])->name('index'); 
+        Route::get('delete/{id}', [ContactUsController::class, 'delete'])->name('destroy');
+    });
+
+    Route::group(['prefix' => 'bookings', 'as' => 'bookings.'], function () {
+        Route::get('index', [BookingController::class, 'index'])->name('index');
+        Route::get('create', [BookingController::class, 'create'])->name('create');
+        Route::post('store', [BookingController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [BookingController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [BookingController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [BookingController::class, 'delete'])->name('destroy');
     });
 
 });
