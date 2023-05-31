@@ -274,6 +274,31 @@
                                    
                                 </div>
                             </div>
+                             <div class="card card-flush py-4">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2>Social Media Section</h2>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div>
+                                        <label class="form-label">Facebook</label>
+                                        <input type="text" class="form-control mb-2" name="facebook"
+                                            placeholder="" value="{{$home->facebook}}"/>
+                                    </div>
+                                     <div>
+                                        <label class="form-label">Instagram</label>
+                                        <input type="text" class="form-control mb-2" name="insta"
+                                            placeholder="" value="{{$home->insta}}"/>
+                                    </div>
+                                    <div>
+                                        <label class="form-label">Twitter</label>
+                                        <input type="text" class="form-control mb-2" name="twiter"
+                                            placeholder="" value="{{$home->twiter}}"/>
+                                    </div>
+                                   
+                                </div>
+                            </div>
                           
                             <div class="d-flex justify-content-end">
                                 <a href="#"

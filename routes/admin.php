@@ -19,6 +19,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
+        Route::get('/profile/{id}', [DashboardController::class, 'profile'])->name('profile');
+        Route::post('/profile/{id}', [DashboardController::class, 'updateProfile'])->name('updateProfile');
     });
 
     Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
@@ -135,6 +137,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::post('update/{id}', [BookingController::class, 'update'])->name('update');
         Route::get('delete/{id}', [BookingController::class, 'delete'])->name('destroy');
     });
-
+    
+        Route::get('forget_password', [DashboardController::class, 'forgetPassword'])->name('forgetPassword');
+        Route::get('verify_code', [DashboardController::class, 'verifyCode'])->name('verifyCode');
+        Route::get('update_password', [DashboardController::class, 'updatePassword'])->name('updatePassword');
+   
 });
 

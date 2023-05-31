@@ -29,6 +29,9 @@ return new class extends Migration
             $table->string('resource_img')->nullable();
             $table->string('tournament_title')->nullable();
             $table->text('tournament_des')->nullable();
+            $table->text('facebook')->nullable();
+            $table->text('insta')->nullable();
+            $table->text('twiter')->nullable();
             $table->timestamps();
         });
     }
