@@ -13,8 +13,16 @@ class ProfileController extends Controller
 {
     public function getUserProfile(Request $request)
     {
-        $userId = '52';
-        $user = User::where('id', $userId)->first();
+        $user = User::where('email', $request->email)->first();
+        return response()->json(['data' => $user], 200);
+    }
+
+    public function updateUserProfile(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        $user->name = $request->name;
+        $user->mobile_no = $request->mobile_no;
+        $user->save();
         return response()->json(['data' => $user], 200);
     }
 }

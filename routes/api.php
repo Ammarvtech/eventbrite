@@ -25,7 +25,8 @@ Route::post('/verify-code', [UserController::class, 'verifyCode']);
 Route::get('/countries', [CountryService::class, 'getAll']);
 
 // profile
-Route::get('/get-user-profile', [ProfileController::class, 'getUserProfile']);
+Route::post('/get-user-profile', [ProfileController::class, 'getUserProfile']);
+Route::post('/update-user-profile', [ProfileController::class, 'updateUserProfile']);
 
 // about us 
 Route::get('/privacy-policy', [PagesController::class, 'privacyPolicy']);
