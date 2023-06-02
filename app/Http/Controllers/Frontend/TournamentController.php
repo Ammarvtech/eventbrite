@@ -18,6 +18,16 @@ use App\Http\Requests\StoreTournamentRequest;
 
 class TournamentController extends Controller
 {
+
+    public function detail(){
+        
+        $tournament = Tournament::with(['images', 'tournamentCategories','category'])
+        ->where('is_active', 1)
+        ->where('id', '1')
+        ->first();
+
+        return response()->json(['data' => $tournament], 200);
+    }
     public function getDetails(){
         $categories = Category::all();
         $tournamentTypes = TournamentType::all();

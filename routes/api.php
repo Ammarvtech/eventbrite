@@ -8,7 +8,6 @@ use App\Http\Components\Services\CountryService;
 use App\Http\Controllers\Frontend\TournamentController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\BookingController;
-use App\Http\Controllers\Frontend\TournamentDetail;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +31,7 @@ Route::post('/create-booking', [BookingController::class, 'bookingCreate']);
 Route::post('/reset-password', [BookingController::class, 'reset_password']);
 
 // tournament details
-Route::post('/tournament-details', [TournamentDetail::class, 'create']);
+Route::post('/tournament-details', [TournamentController::class, 'detail']);
 // profile
 Route::post('/get-user-profile', [ProfileController::class, 'getUserProfile']);
 Route::post('/update-user-profile', [ProfileController::class, 'updateUserProfile']);
