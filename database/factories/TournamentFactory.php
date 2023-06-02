@@ -61,7 +61,8 @@ class TournamentFactory extends Factory
             'roles_and_responsibilities' => $this->faker->word,
             'sponsor_information' => $this->faker->word,
             'overview' => $this->faker->text,
-            'is_active' => $this->faker->numberBetween(0, 1),
+            'is_active' => 1,
+            
         ];
     }
 }

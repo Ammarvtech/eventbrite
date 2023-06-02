@@ -40,6 +40,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\TournamentLevel::factory(10)->create();
         \App\Models\Booking::factory(10)->create();
         \App\Models\Intrest::factory(10)->create();
+        \App\Models\Team::factory(100)->create();
+        \App\Models\TeamMember::factory(100)->create();
 
 
         // \App\Models\Page::factory(10)->create();

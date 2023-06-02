@@ -19,11 +19,17 @@ use App\Http\Requests\StoreTournamentRequest;
 class TournamentController extends Controller
 {
 
-    public function detail(){
+    public function tournamentDetail(Request $request){
         
-        $tournament = Tournament::with(['images', 'tournamentCategories','category'])
+        $tournament = Tournament::with([
+            'images', 
+            'tournamentCategories',
+            'category',
+            'teams',
+            'teamMembers',
+            ])
         ->where('is_active', 1)
-        ->where('id', '1')
+        ->where('id', $request->id)
         ->first();
 
         return response()->json(['data' => $tournament], 200);

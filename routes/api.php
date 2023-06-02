@@ -31,7 +31,7 @@ Route::post('/create-booking', [BookingController::class, 'bookingCreate']);
 Route::post('/reset-password', [BookingController::class, 'reset_password']);
 
 // tournament details
-Route::post('/tournament-details', [TournamentController::class, 'detail']);
+Route::get('/tournament-details/{id}', [TournamentController::class, 'tournamentDetail']);
 // profile
 Route::post('/get-user-profile', [ProfileController::class, 'getUserProfile']);
 Route::post('/update-user-profile', [ProfileController::class, 'updateUserProfile']);

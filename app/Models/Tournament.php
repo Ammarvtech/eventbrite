@@ -75,4 +75,10 @@ class Tournament extends Model
     public function country(){
         return $this->belongsTo(Country::class);
     }
+    public function teams(){
+        return $this->hasMany(Team::class);
+    }
+    public function teamMembers(){
+        return $this->hasManyThrough(TeamMember::class, Team::class);
+    }
 }
