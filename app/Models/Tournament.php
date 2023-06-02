@@ -81,4 +81,7 @@ class Tournament extends Model
     public function teamMembers(){
         return $this->hasManyThrough(TeamMember::class, Team::class);
     }
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
 }
