@@ -25,9 +25,8 @@ class TournamentController extends Controller
             'images', 
             'tournamentCategories',
             'category',
-            'teams',
-            'teamMembers',
-            'reviews'
+            'teams.teamMembers',
+            'reviews.user',
             ])
         ->where('is_active', 1)
         ->where('id', $request->id)

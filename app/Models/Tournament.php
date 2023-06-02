@@ -79,7 +79,7 @@ class Tournament extends Model
         return $this->hasMany(Team::class);
     }
     public function teamMembers(){
-        return $this->hasManyThrough(TeamMember::class, Team::class);
+        return $this->hasManyThrough(TeamMember::class, Team::class, 'tournament_id', 'team_id');
     }
     public function reviews(){
         return $this->hasMany(Review::class);
