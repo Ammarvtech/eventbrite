@@ -15,6 +15,6 @@ class TournamentDetail extends Controller
 {
     public function create()
     {
-        //
+        return 'hello world';
     }
 }
