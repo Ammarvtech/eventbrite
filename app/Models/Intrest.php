@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Intrest extends Model
 {
     use HasFactory;
-    protected $table = 'Intrests';
+    protected $table = 'intrests';
 
     public function booking()
     {
