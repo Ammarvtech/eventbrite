@@ -27,6 +27,7 @@ class TournamentController extends Controller
             'category',
             'teams.teamMembers',
             'reviews.user',
+            'tournamentType',
             ])
         ->where('is_active', 1)
         ->where('id', $request->id)

@@ -84,4 +84,9 @@ class Tournament extends Model
     public function reviews(){
         return $this->hasMany(Review::class);
     }
+    public function tournamentType(){
+        $query = $this->belongsTo(TournamentType::class, 'type');
+        $query->where('is_active', 1);
+        return $query;
+    }
 }

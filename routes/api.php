@@ -8,6 +8,7 @@ use App\Http\Components\Services\CountryService;
 use App\Http\Controllers\Frontend\TournamentController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\BookingController;
+use App\Http\Controllers\Frontend\TeamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,11 @@ Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/verify-code', [UserController::class, 'verifyCode']);
 Route::get('/countries', [CountryService::class, 'getAll']);
+
+// team
+Route::get('/teams', [TeamController::class, 'getAll']);
+Route::post('/create-team', [TeamController::class, 'create']);
+
 
 // booking
 Route::get('/bookings', [BookingController::class, 'getAll']);
