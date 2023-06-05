@@ -18,6 +18,8 @@ use App\Http\Controllers\Admin\TournamentLevelController;
 use App\Http\Controllers\Admin\TournamentTeamController;
 use App\Http\Controllers\Admin\BookingIntrestController;
 use App\Http\Controllers\Admin\TournamentEventController;
+use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\AffiliationController;
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('login', [AuthController::class, 'loginForm'])->name('login');
@@ -191,7 +193,23 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::post('update/{id}', [TournamentEventController::class, 'update'])->name('update');
         Route::get('delete/{id}', [TournamentEventController::class, 'delete'])->name('destroy');
     });
-    
+    Route::group(['prefix' => 'reviews', 'as' => 'reviews.'], function () {
+        Route::get('index', [ReviewController::class, 'index'])->name('index');
+        Route::get('create', [ReviewController::class, 'create'])->name('create');
+        Route::post('store', [ReviewController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [ReviewController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [ReviewController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [ReviewController::class, 'delete'])->name('destroy');
+    });
+
+    Route::group(['prefix' => 'affiliations', 'as' => 'affiliations.'], function () {
+        Route::get('index', [AffiliationController::class, 'index'])->name('index');
+        Route::get('create', [AffiliationController::class, 'create'])->name('create');
+        Route::post('store', [AffiliationController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [AffiliationController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [AffiliationController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [AffiliationController::class, 'delete'])->name('destroy');
+    });    
         Route::get('forget_password', [DashboardController::class, 'forgetPassword'])->name('forgetPassword');
         Route::get('verify_code', [DashboardController::class, 'verifyCode'])->name('verifyCode');
         Route::get('update_password', [DashboardController::class, 'updatePassword'])->name('updatePassword');
