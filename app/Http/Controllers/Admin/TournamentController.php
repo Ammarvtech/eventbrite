@@ -22,12 +22,13 @@ class TournamentController extends Controller
     public function show($id)
     {
         $tournament = Tournament::with(
-            'images',
+            'images', 
+            'tournamentCategories',
             'category',
-            'type',
-            'country',
+            'teams.teamMembers',
+            'reviews.user',
+            'tournamentType',
             )->findOrFail($id);
-        return  $tournament;
         return view('admin.tournaments.show', compact('tournament'));
     }
     public function create()
