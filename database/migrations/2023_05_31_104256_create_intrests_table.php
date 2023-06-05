@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('booking_id')->constrained('bookings')->onDelete('cascade');
             $table->string('full_name');
+            $table->string('is_active')->default(1);
             $table->timestamps();
         });
     }

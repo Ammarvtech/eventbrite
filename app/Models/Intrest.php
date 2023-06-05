@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Intrest extends Model
 {
     use HasFactory;
-    protected $table = 'intrests';
+    protected $table = 'Intrests';
+    protected $fillable = [
+        'full_name',
+        'booking_id',
+        'is_active'
+    ];
 
     public function booking()
     {

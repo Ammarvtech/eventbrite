@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tournament_levels', function (Blueprint $table) {
+        Schema::create('tournament_events', function (Blueprint $table) {
             $table->id();
-            $table->string('level')->nullable();
+            $table->string('name')->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->string('deleted_by')->nullable();
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tournament_levels');
+        Schema::dropIfExists('tournament_events');
     }
 };

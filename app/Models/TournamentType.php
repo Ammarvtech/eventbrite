@@ -9,6 +9,10 @@ class TournamentType extends Model
 { 
     use HasFactory;
     protected $table = 'tournament_types';
+    protected $fillable = [
+    'name',
+    'is_active'
+];
 
     public function tournaments()
     {
