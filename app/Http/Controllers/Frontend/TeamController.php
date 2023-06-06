@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Exception;
-
+use Stripe\Stripe;
+use Stripe\Charge;
+use Stripe\Token;
 
 class TeamController extends Controller
 {
@@ -51,6 +53,34 @@ class TeamController extends Controller
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors()], 422);
             }
+
+            // $cardNumber = $request->input('cardNumber');
+            // $expiry = $request->input('expiry');
+            // $cvc = $request->input('cvc');
+
+
+            // Payment Process Start
+            Stripe::setApiKey(env('STRIPE_SECRET'));
+
+            $token = Token::create([
+                'card' => [
+                    'number' => $request->card_number,
+                    'exp_month' => $request->card_month,
+                    'exp_year' => $request->card_year,
+                    'cvc' => $request->cvc,
+                ],
+            ]);
+
+            // Use the test token in the charge request
+            $charge = Charge::create([
+                'amount' => 3000 * 100,
+                'currency' => 'usd',
+                'source' => $token->id, // Pass the token ID
+                'description' => 'Example charge',
+            ]);
+            // Payment Process End
+
+
             $data['waivers_file'] = '';
             $data['logo'] = '';
             $data['payment_method'] = 'visa';
