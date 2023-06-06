@@ -21,6 +21,10 @@ use App\Http\Controllers\Admin\TournamentEventController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\AffiliationController;
 
+// redirect to /admin/login if got /
+Route::redirect('/', '/admin/login');
+
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('login', [AuthController::class, 'loginForm'])->name('login');
     Route::post('login', [AuthController::class, 'login'])->name('login');
