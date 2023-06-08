@@ -36,7 +36,7 @@ class TournamentFactory extends Factory
             'format' => $this->faker->word,
             'prize_distribution' => $this->faker->word,
             'level' => $this->faker->word,
-            'entry_fee' => $this->faker->word,
+            'entry_fee' => $this->faker->numberBetween(1, 1000),
             'rules' => $this->faker->word,
             'code_of_conduct' => $this->faker->word,
             'age' => $this->faker->word,

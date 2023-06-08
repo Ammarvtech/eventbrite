@@ -20,6 +20,7 @@ class TeamMemberFactory extends Factory
             'mem_name' => $this->faker->word(),
             'mem_email' => $this->faker->word(),
             'mem_phone' => $this->faker->word(),
+            'logo' => 'uploads/4zmkglfIxDEgExozB46nOsgdyoc2Vpw0N1YgZydW.jpg',
             'role' => $this->faker->word(),
             'emergency_name' => $this->faker->word(),
             'emergency_phone' => $this->faker->word(),

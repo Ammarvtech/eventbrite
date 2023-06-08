@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('payment_method');
             $table->string('payment_prof');
+            $table->string('payment_status');
             $table->string('waivers_email');
             $table->string('waivers_file');
             $table->timestamps();

@@ -54,84 +54,88 @@ class TeamController extends Controller
                 return response()->json(['error' => $validator->errors()], 422);
             }
 
-            // $cardNumber = $request->input('cardNumber');
-            // $expiry = $request->input('expiry');
-            // $cvc = $request->input('cvc');
-
-
-            // Payment Process Start
-            Stripe::setApiKey(env('STRIPE_SECRET'));
-
-            $token = Token::create([
-                'card' => [
-                    'number' => $request->card_number,
-                    'exp_month' => $request->card_month,
-                    'exp_year' => $request->card_year,
-                    'cvc' => $request->cvc,
-                ],
-            ]);
-
-            // Use the test token in the charge request
-            $charge = Charge::create([
-                'amount' => 3000 * 100,
-                'currency' => 'usd',
-                'source' => $token->id, // Pass the token ID
-                'description' => 'Example charge',
-            ]);
-            // Payment Process End
-
-
             $data['waivers_file'] = '';
             $data['logo'] = '';
             $data['payment_method'] = 'visa';
             // $data['payment_status'] = 'pending';
             if ($request->hasFile('logo')) {
                 $file = $request->file('logo');
-                $extension = $file->getClientOriginalExtension();
-                $filename = time() . '.' . $extension;
                 $file = $file->store('uploads', 'public');
                 $data['logo'] = $file;
             }
             if ($request->hasFile('waivers_file')) {
                 $file = $request->file('waivers_file');
-                $extension = $file->getClientOriginalExtension();
-                $filename = time() . '.' . $extension;
                 $file = $file->store('uploads', 'public');  
                 $data['waivers_file'] = $file;
             }
+            DB::beginTransaction();
+            try {
+                $teams = new Team();
+                $teams->tournament_id = $data['tournament_id'];
+                $teams->user_id = $data['user_id'];
+                $teams->team_name = $data['team_name'];
+                $teams->affiliation = $data['affiliation'];
+                $teams->team_color = $data['team_color'];
+                $teams->skill = $data['skill'];
+                $teams->full_name = $data['full_name'];
+                $teams->email = $data['email'];
+                $teams->phone = $data['phone'];
+                $teams->waivers_email = $data['waivers_email'];
+                $teams->waivers_file = $data['waivers_file'];
+                $teams->payment_method ='stripe';
+                $teams->payment_prof = 'abc';
+                $teams->payment_status = 'pending';
+                $teams->logo = $data['logo'];
+                $teams->save();
 
-            $teams = new Team();
-            $teams->tournament_id = $data['tournament_id'];
-            $teams->user_id = $data['user_id'];
-            $teams->team_name = $data['team_name'];
-            $teams->affiliation = $data['affiliation'];
-            $teams->team_color = $data['team_color'];
-            $teams->skill = $data['skill'];
-            $teams->full_name = $data['full_name'];
-            $teams->email = $data['email'];
-            $teams->phone = $data['phone'];
-            $teams->waivers_email = $data['waivers_email'];
-            $teams->waivers_file = $data['waivers_file'];
-            $teams->payment_method = 'abc';
-            $teams->payment_prof = 'abc';
-            $teams->logo = $data['logo'];
-            $teams->save();
+                $team_id = $teams->id;
+                $team_members = json_decode($data['teams'], true);
+                foreach ($team_members as $team_member) {
+                    $team_members = new TeamMember();
+                    $team_members->team_id = $team_id;
+                    $team_members->mem_name = $team_member['mem_name'];
+                    $team_members->mem_email = $team_member['mem_email'];
+                    $team_members->mem_phone = $team_member['mem_phone'];
+                    $team_members->role = $team_member['role'];
+                    $team_members->emergency_name = $team_member['emergency_name'];
+                    $team_members->emergency_phone = $team_member['emergency_phone'];
+                    $team_members->save();
+                }
+                
+                $data = Team::with('teamMembers')->where('id', $team_id)->first();
+                $team = Team::where('id', $team_id)->first();
+                $tournament = Tournament::where('id', $team->tournament_id)->first();
 
-            $team_id = $teams->id;
-            $team_members = json_decode($data['teams'], true);
-            foreach ($team_members as $team_member) {
-                $team_members = new TeamMember();
-                $team_members->team_id = $team_id;
-                $team_members->mem_name = $team_member['mem_name'];
-                $team_members->mem_email = $team_member['mem_email'];
-                $team_members->mem_phone = $team_member['mem_phone'];
-                $team_members->role = $team_member['role'];
-                $team_members->emergency_name = $team_member['emergency_name'];
-                $team_members->emergency_phone = $team_member['emergency_phone'];
-                $team_members->save();
+                Stripe::setApiKey(env('STRIPE_SECRET'));
+                $token = Token::create([
+                    'card' => [
+                        'number' => $request->card_number,
+                        'exp_month' => $request->card_month,
+                        'exp_year' => $request->card_year,
+                        'cvc' => $request->cvc,
+                    ],
+                ]);
+                $charge = Charge::create([
+                    'amount' => intval($tournament->entry_fee) * 100,
+                    'currency' => 'usd',
+                    'source' => $token->id, // Pass the token ID
+                    'description' => 'Registration Fee for tournament title: '.$tournament->name,
+                ]);
+                if($charge['paid'] == true){
+                    $team->payment_status = 'paid';
+                    $team->save();
+                }else{
+                    $team->payment_status = 'pending';
+                    $team->save();
+                }
+                DB::commit();
+                return response()->json(['data' => $charge['paid']], 200);
+            } catch (Exception $e) {
+                DB::rollback();
+                return response()->json(['error' => $e->getMessage()], 422);
             }
-            $data = Team::with('teamMembers')->where('id', $team_id)->first();
-            return response()->json(['data' => $data], 200);
+    
+         
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 422);
         }
