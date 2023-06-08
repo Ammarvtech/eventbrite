@@ -140,9 +140,6 @@
                             <li class="nav-item">
                                 <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab" href="#teams">Teams</a>
                             </li>
-                             <li class="nav-item">
-                                <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab" href="#team_members">Team Members</a>
-                            </li>
                            
                             <li class="nav-item ms-auto">
                                 <!--begin::Action menu-->
@@ -523,116 +520,142 @@
                             </div>
 
                             <div class="tab-pane fade" id="teams" role="tabpanel">
-                                <div class="card pt-4 mb-6 mb-xl-9 px-4">
-                                    <div class="py-0" data-kt-customer-payment-method="row">
-                                        <div class="py-3 d-flex flex-stack flex-wrap">
-                                            <div class="d-flex align-items-center collapsible collapsed rotate" data-bs-toggle="collapse" href="#team_detail" role="button" aria-expanded="false" aria-controls="team_detail">
-                                                <div class="me-3 rotate-90">
-                                                    <span class="svg-icon svg-icon-3">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="black" />
-                                                        </svg>
-                                                    </span>
-                                                </div>
-                                                <img src="assets/media/svg/card-logos/visa.svg" class="w-40px me-3" alt="" />
-                                                <div class="me-3">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="text-gray-800 fw-bolder">Team Details</div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                            <!--begin::Card-->
+                                <div class="card pt-4 mb-6 mb-xl-9">
+                                    <!--begin::Card header-->
+                                    <div class="card-header border-0">
+                                        <!--begin::Card title-->
+                                        <div class="card-title">
+                                            <h2 class="fw-bolder mb-0">Teams & Teams Memebrs</h2>
                                         </div>
-                                        <!--end::Header-->
-                                        <!--begin::Body-->
-                                        <div id="team_detail" class="collapse fs-6 ps-10" data-bs-parent="#kt_customer_view_payment_method">
-                                            <!--begin::Details-->
-                                            <div class="d-flex flex-wrap py-5">
-                                                <!--begin::Col-->
-                                                <div class="flex-equal me-5">
-                                                    <table class="table table-flush fw-bold gy-1">
-                                                       
-                                                        <tr>
-                                                            <th class="text-gray-800">Team Name</th>
-                                                            <th class="text-gray-800">Team Color</th>
-                                                            <th class="text-gray-800">Affiliation</th>
-                                                        </tr>
-                                                         @foreach($tournament->teams as $team)
-                                                        <tr>
-                                                           <th class="text-muted min-w-125px w-125px">{{ $team->team_name }}</td>
-                                                           <th class="text-muted min-w-125px w-125px">{{ $team->team_color }}</td>
-                                                           <td class="text-muted min-w-125px w-125px">{{ $team->affiliation }}</td>
-                                                        </tr>
-                                                       @endforeach
-                                                    </table>
-                                                </div> 
-                                                <!--end::Col-->
-                                            </div>
-                                            <!--end::Details-->
-                                        </div>
-                                        <!--end::Body-->
+                                        <!--end::Card title-->
+                                       
                                     </div>
-                                   
-                                </div>  
-                            </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    @foreach($tournament->teams as $key => $team)
+                                    <div id="kt_customer_view_payment_method_{{ $key }}" class="card-body pt-0">
+                                        <!--begin::Option-->
 
-                            <div class="tab-pane fade" id="team_members" role="tabpanel">
-                                <div class="card pt-4 mb-6 mb-xl-9 px-4">
-                                    <div class="py-0" data-kt-customer-payment-method="row">
-                                        <div class="py-3 d-flex flex-stack flex-wrap">
-                                            <div class="d-flex align-items-center collapsible collapsed rotate" data-bs-toggle="collapse" href="#team_member_detail" role="button" aria-expanded="false" aria-controls="team_member_detail">
-                                                <div class="me-3 rotate-90">
-                                                    <span class="svg-icon svg-icon-3">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="black" />
-                                                        </svg>
-                                                    </span>
-                                                </div>
-                                                <img src="assets/media/svg/card-logos/visa.svg" class="w-40px me-3" alt="" />
-                                                <div class="me-3">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="text-gray-800 fw-bolder">Team Members</div>
+                                        <div class="py-0" data-kt-customer-payment-method="row">
+                                            <!--begin::Header-->
+                                            <div class="py-3 d-flex flex-stack flex-wrap">
+                                                <!--begin::Toggle-->
+                                                <div class="d-flex align-items-center collapsible rotate collapsed" data-bs-toggle="collapse" href="#kt_customer_view_payment_method_{{ $key }}_details" role="button" aria-expanded="false" aria-controls="kt_customer_view_payment_method_{{ $key }}_details">
+                                                    <!--begin::Arrow-->
+                                                    <div class="me-3 rotate-90">
+                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr071.svg-->
+                                                        <span class="svg-icon svg-icon-3">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                <path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="black" />
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon-->
                                                     </div>
+                                                    <!--end::Arrow-->
+                                                    <!--begin::Logo-->
+                                                   @if($team->logo)
+                                                        <img src="{{ asset('storage/uploads/' . $team->logo) }}" class="w-40px me-3" alt="" />
+                                                    @else
+                                                        <img src="{{ asset('storage/uploads/default.png') }}" class="w-40px me-3" alt="" />
+                                                    @endif
+                                                    <!--end::Logo-->
+                                                    <!--begin::Summary-->
+                                                    <div class="me-3">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="text-gray-800 fw-bolder">{{ $team->team_name }}</div>
+                                                            
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <!--end::Summary-->
                                                 </div>
+                                                <!--end::Toggle-->
+                                                <!--begin::Toolbar-->
+                                                <div class="d-flex my-3 ms-9">
+                                                   
+                                                   
+                                                   
+                                                    <!--begin::Menu-->
+                                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold w-150px py-3" data-kt-menu="true">
+                                                        <!--begin::Menu item-->
+                                                        <div class="menu-item px-3">
+                                                            <a href="#" class="menu-link px-3" data-kt-payment-mehtod-action="set_as_primary">Set as Primary</a>
+                                                        </div>
+                                                        <!--end::Menu item-->
+                                                    </div>
+                                                    <!--end::Menu-->
+                                                    <!--end::More-->
+                                                </div>
+                                                <!--end::Toolbar-->
                                             </div>
-                                        </div>
-                                        <!--end::Header-->
-                                        <!--begin::Body-->
-                                        <div id="team_member_detail" class="collapse fs-6 ps-10" data-bs-parent="#kt_customer_view_payment_method">
-                                            <!--begin::Details-->
-                                            <div class="d-flex flex-wrap py-5">
-                                                <!--begin::Col-->
-                                                <div class="flex-equal me-5">
-                                                    <table class="table table-flush fw-bold gy-1">
+                                            <!--end::Header-->
+                                            <!--begin::Body-->
+                                            <div id="kt_customer_view_payment_method_{{ $key }}_details" class="collapse fs-6 ps-10" data-bs-parent="#kt_customer_view_payment_method">
+                                                <!--begin::Details-->
+                                                <div class="d-flex flex-wrap py-5">
+                                                    <!--begin::Col-->
+                                                    <div class="flex-equal me-5">
+                                                        <table class="table table-flush fw-bold gy-1">
                                                        
                                                         <tr>
                                                             <th class="text-gray-800">Member Name</th>
                                                             <th class="text-gray-800">Member Email</th>
                                                             <th class="text-gray-800">Member Phone</th>
-                                                            <th class="text-gray-800">Member Emergency Name</th>
-                                                            <th class="text-gray-800">Member Emergency Phone</th>
+                                                            <th class="text-gray-800">Emergency Name</th>
+                                                            <th class="text-gray-800">Emergency Phone</th>
                                                             
                                                             
                                                         </tr>
-                                                         @foreach($tournament->teamMembers as $teamMember)
+                                                        @php
+                                                            $teamMembers = DB::table('team_members')->where('team_id',$team->id)->get()
+                                                        @endphp
+                                                         @foreach($teamMembers as $teamMember)
                                                         <tr>
-                                                           <th class="text-muted min-w-125px w-125px">{{ $teamMember->mem_name }}</td>
-                                                           <th class="text-muted min-w-125px w-125px">{{ $teamMember->mem_email }}</td>
-                                                           <th class="text-muted min-w-125px w-125px">{{ $teamMember->mem_phone }}</td>
-                                                            <td class="text-muted min-w-125px w-125px">{{ $teamMember->emergency_name }}</td>
-                                                            <td class="text-muted min-w-125px w-125px">{{ $teamMember->emergency_phone }}</td>
+                                                           <td class="text-muted min-w-125px w-125px">
+                                                           
+                                                            {{ isset($teamMember->mem_name) ? $teamMember->mem_name : 'N/A' }}
+                                                           </td>
+                                                           <td class="text-muted min-w-125px w-125px">
+                                                            {{ isset($teamMember->mem_email) ? $teamMember->mem_email : 'N/A' }}
+                                                            </td>
+                                                           <td class="text-muted min-w-125px w-125px">
+                                                            
+                                                             {{ isset($teamMember->mem_phone) ? $teamMember->mem_phone : 'N/A' }}
+                                                           </td>
+                                                            <td class="text-muted min-w-125px w-125px">
+                                                                
+                                                                {{ isset($teamMember->emergency_name) ? $teamMember->emergency_name : 'N/A' }}
+                                                            </td>
+                                                            <td class="text-muted min-w-125px w-125px">
+                                                               
+                                                                {{ isset($teamMember->emergency_phone) ? $teamMember->emergency_phone : 'N/A' }}
+                                                            </td>
                                                         </tr>
                                                        @endforeach
                                                     </table>
-                                                </div> 
-                                                <!--end::Col-->
+                                                    </div>
+                                                    <!--end::Col-->
+                                                    <!--begin::Col-->
+                                                    
+                                                    <!--end::Col-->
+                                                </div>
+                                                <!--end::Details-->
                                             </div>
-                                            <!--end::Details-->
+                                            <!--end::Body-->
                                         </div>
-                                        <!--end::Body-->
+                                        <!--end::Option-->
+                                        <div class="separator separator-dashed"></div>
+                                       
                                     </div>
-                                   
-                                </div>  
+                                    @endforeach
+                                    <!--end::Card body-->
+                                </div>
+                                <!--end::Card--> 
                             </div>
+
+
+                          
                         </div>
                         <!--end:::Tab content-->
                     </div>
