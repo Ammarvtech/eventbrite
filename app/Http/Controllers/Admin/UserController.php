@@ -40,10 +40,13 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
     }
     public function edit(User $user,$id)
-    {
+    { 
         $user = User::find($id);
-        $countries = Country::get();
-        return view('admin.users.edit', compact('user','countries'));
+        $user->load('wallet.transaction.tournament');
+        //dd($user);
+        //$user = User::find($id);
+        //$countries = Country::get();
+        return view('admin.users.edit', compact('user'));
     }
     public function update(Request $request, User $user,$id)
     {
