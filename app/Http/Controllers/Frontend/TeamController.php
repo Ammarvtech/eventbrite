@@ -18,6 +18,21 @@ use Stripe\Token;
 
 class TeamController extends Controller
 {
+    public function teamsByUser (Request $request)
+    {
+        $user_id = $request->user_id;
+        $tournament = Tournament::with(
+            'images', 
+            'tournamentCategories',
+            'category',
+            'teams.teamMembers',
+            'reviews.user',
+            'tournamentType',
+            )->whereHas('teams', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id);
+        })->latest()->paginate(10);
+        return response()->json(['data' => $tournament], 200);
+    }
     public function create (Request $request)
     {
         $data = request()->all();

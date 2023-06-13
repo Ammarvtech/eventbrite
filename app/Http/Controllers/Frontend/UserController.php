@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Wallet;
 
 class UserController extends Controller
 {
@@ -58,46 +59,17 @@ class UserController extends Controller
             'verify_token' => $token,
         ]);
 
-        // $data = array(
-        //     'name' => $request->name,
-        //     'token' => $token,
-        // );
-        // $body = "Your verification code is: " . $token;
-        // Mail::send($body, $data, function ($message) use ($request) {
-        //     $message->to($request->email, $request->name)
-        //         ->subject('Verify your email address');
-        //     $message->from('info@eventsbrite.com', 'Eventsbrite');
-        // });
+        Wallet::create([
+            'user_id' => $user->id,
+            'payouts' => 0,
+            'current_balance' => 0,
+            'total_balance' => 0,
+        ]);
 
         return response()->json([
             'message' => 'Registration successful, please verify your email',
             'user' => $user,
         ], 201);
-
-
-
-        // send email verification link using laravel mail
-        // return response()->json([
-        //     'message' => 'User registered successfully',
-        //     'user' => $user,
-        // ], 201);
-
-
-
-        // $credentials = $request->only('email', 'password');
-        // if (!Auth::attempt($credentials)) {
-        //     return response()->json([
-        //         'message' => 'Unauthorized',
-        //     ], 401);
-        // } else {
-        //     $user = Auth::user();
-        //     $token = $user->createToken('authToken')->plainTextToken;
-        //     return response()->json([
-        //         'message' => 'User registered successfully',
-        //         'user' => $user,
-        //         'token' => $token,
-        //     ], 201);
-        // }
     }
 
     public function verifyCode(Request $request)

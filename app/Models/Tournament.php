@@ -11,6 +11,7 @@ class Tournament extends Model
 
     // define fillable fields
     protected $fillable = [
+        'user_id',
         'title',
         'slug',
         'category_id',
@@ -88,5 +89,8 @@ class Tournament extends Model
         $query = $this->belongsTo(TournamentType::class, 'type');
         $query->where('is_active', 1);
         return $query;
+    }
+    public function team(){
+        return $this->belongsTo(Team::class);
     }
 }

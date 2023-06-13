@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Components\Services\OrganizationService;
 use App\Models\User;
 use App\Models\Country;
+use App\Models\Wallet;
 
 class UserController extends Controller
 {
@@ -33,6 +34,9 @@ class UserController extends Controller
             'role' => 'required',
         ]);
         $user = User::create($request->all());
+        $wallet = new Wallet();
+        $wallet->user_id = $user->id;
+        $wallet->save();
         return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
     }
     public function edit(User $user,$id)

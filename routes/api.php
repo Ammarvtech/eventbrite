@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\TournamentController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\Frontend\TeamController;
+use App\Http\Controllers\Frontend\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,13 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/verify-code', [UserController::class, 'verifyCode']);
 Route::get('/countries', [CountryService::class, 'getAll']);
 
+
+// transaction
+Route::get('/transactions/{userId}', [TransactionController::class, 'getAll']);
 // team
 Route::get('/teams', [TeamController::class, 'getAll']);
 Route::post('/create-team', [TeamController::class, 'create']);
+Route::post('/teamsByUser', [TeamController::class, 'teamsByUser']);
 
 
 // booking
@@ -38,6 +43,7 @@ Route::post('/reset-password', [BookingController::class, 'reset_password']);
 
 // tournament details
 Route::get('/tournament-details/{id}', [TournamentController::class, 'tournamentDetail']);
+Route::post('/tournamentsByUser', [TournamentController::class, 'tournamentsByUser']);
 // profile
 Route::post('/get-user-profile', [ProfileController::class, 'getUserProfile']);
 Route::post('/update-user-profile', [ProfileController::class, 'updateUserProfile']);
