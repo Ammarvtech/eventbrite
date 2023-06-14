@@ -10,6 +10,7 @@ use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\Frontend\TeamController;
 use App\Http\Controllers\Frontend\TransactionController;
+use App\Http\Controllers\Frontend\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,10 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/verify-code', [UserController::class, 'verifyCode']);
 Route::get('/countries', [CountryService::class, 'getAll']);
 
+
+// wishlist
+Route::post('/add-to-wishlist', [WishlistController::class, 'addToWishlist']);
+Route::post('/remove-from-wishlist', [WishlistController::class, 'removeFromWishlist']);
 
 // transaction
 Route::get('/transactions/{userId}', [TransactionController::class, 'getAll']);

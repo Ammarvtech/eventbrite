@@ -93,4 +93,8 @@ class Tournament extends Model
     public function team(){
         return $this->belongsTo(Team::class);
     }
+
+    public function wishlist(){
+        return $this->hasMany(Wishlist::class);
+    }
 }
