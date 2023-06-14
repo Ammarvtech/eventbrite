@@ -30,6 +30,7 @@ Route::get('/countries', [CountryService::class, 'getAll']);
 
 
 // wishlist
+Route::post('/wishlist', [WishlistController::class, 'getAll']);
 Route::post('/add-to-wishlist', [WishlistController::class, 'addToWishlist']);
 Route::post('/remove-from-wishlist', [WishlistController::class, 'removeFromWishlist']);
 
