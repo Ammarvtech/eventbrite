@@ -24,6 +24,8 @@ class TransactionFactory extends Factory
             'amount' => $this->faker->randomNumber(),
             'payment_method' => $this->faker->randomElement(['paypal', 'stripe']),
             'type' => $this->faker->randomElement(['debit', 'credit']),
+            'status' => $this->faker->randomElement(['pending', 'success', 'failed']),
+            'comment' => $this->faker->sentence(),
         ];
     }
 }

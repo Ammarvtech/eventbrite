@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer('amount')->default(0);
             $table->string('payment_method')->nullable();
             $table->string('type')->nullable();
+            $table->string('status')->nullable();
+            $table->longText('comment')->nullable();
             $table->timestamps();
         });
     }
