@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\Frontend\TeamController;
 use App\Http\Controllers\Frontend\TransactionController;
 use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\Frontend\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,9 @@ Route::post('/remove-from-wishlist', [WishlistController::class, 'removeFromWish
 
 // transaction
 Route::get('/transactions/{userId}', [TransactionController::class, 'getAll']);
+
+// payment
+Route::post('/create-indent-payment', [PaymentController::class, 'createStripeIntent']);
 // team
 Route::get('/teams', [TeamController::class, 'getAll']);
 Route::post('/create-team', [TeamController::class, 'create']);
