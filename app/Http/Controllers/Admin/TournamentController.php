@@ -58,6 +58,13 @@ class TournamentController extends Controller
         $tournament->update($data);
         return redirect()->route('admin.tournaments.index')->with('success', 'Tournament updated successfully');
     }
+    public function featured(Request $request)
+    {
+        $tournament = Tournament::findOrFail($request->id);
+        $tournament->is_featured = $request->is_featured;
+        $tournament->save();
+        return redirect()->route('admin.tournaments.index')->with('success', 'Tournament updated successfully');
+    }
     public function destroy($id)
     {
         $tournament = Tournament::findOrFail($id);

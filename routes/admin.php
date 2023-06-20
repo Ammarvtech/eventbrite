@@ -68,6 +68,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::post('update/{id}', [TournamentController::class, 'update'])->name('update');
         Route::get('delete/{id}', [TournamentController::class, 'delete'])->name('destroy');
         Route::get('activate/{id}', [TournamentController::class, 'activate'])->name('activate');
+        Route::post('activate/{id}', [TournamentController::class, 'featured'])->name('featured');
 
     });
 
