@@ -55,6 +55,7 @@ class Tournament extends Model
         'roles_and_responsibilities',
         'sponsor_information',
         'overview',
+        'is_featured',
     ];
 
     public function images()

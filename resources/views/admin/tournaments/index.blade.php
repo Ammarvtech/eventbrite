@@ -5,7 +5,7 @@
     <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
         <div class="d-flex flex-column flex-column-fluid">
             <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
-                <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
+                <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
                             Customers</h1>
@@ -28,7 +28,7 @@
             </div>
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <!--begin::Content container-->
-                <div id="kt_app_content_container" class="app-container container-xxl">
+                <div id="kt_app_content_container" class="app-container container-fluid">
                     <!--begin::Category-->
                     <div class="card card-flush">
 
@@ -55,6 +55,7 @@
                                         <th class="min-w-150px">End Date</th>
                                         <th class="min-w-50px">Teams</th>
                                         <th class="min-w-50px">Status</th>
+                                        <th class="min-w-50px">is_featured</th>
                                         <th class="min-w-150px">Created at</th>
                                         <th class="text-end min-w-70px">Actions</th>
                                     </tr>
@@ -97,16 +98,24 @@
                                                 
                                             </td>
                                             <td>
+                                                <div class="badge badge-light-primary">{{ $tournament->created_at }}</div>
+                                            </td>
+                                            <td>
+                                            <label class="toggle-button">
+                                                    <input type="checkbox" class="is_featured"  onclick="toggleButton('{{ $tournament->id }}')" id="toggle_{{ $tournament->id }}"
+                                                    <?php if($tournament->is_featured == 1) { echo "checked"; } ?>
+                                                     >
+                                                    <span class="slider"></span>
+                                                </label>
+                                            </td>
+                                            <td>
                                                 @if($tournament->is_active == 1)
                                                 <div class="badge badge-light-success">Active</div>
                                                 @else
                                                 <div class="badge badge-light-danger">Inactive</div>
                                                 @endif
                                             </td>
-                                         
-                                            <td>
-                                                <div class="badge badge-light-primary">{{ $tournament->created_at }}</div>
-                                            </td>
+                                            
                                             
                                             <!--end::Type=-->
                                             <!--begin::Action=-->
@@ -175,6 +184,79 @@
 @endsection
 <!-- Add the Sweet Alert library -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+<style>
+   .btn-sm{
+        padding: 5px 10px !important;
+        font-size: 12px;
+        width: 80px;
+    }
+    .checkbox-input{
+        width: 30px;
+        height: 30px;
+    }
+    .status-square {
+        background: #1ca0f278;
+        border: #1ca0f278;
+    }
+    .w-full{
+        width: 100px;
+        padding: 5px;
+    }
+    .status-times {
+        background: #ea535378;
+        border: #ea535378;
+    }
+
+    .nav-link {
+        color: rgb(var(--base));
+    }
+    .toggle-button {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
+.toggle-button input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    width: 30px;
+    height: 30px;
+    padding-left: 47px;
+    border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 4px;
+  top: 4px;
+  background-color: white;
+  border-radius: 50%;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(16px);
+}
+</style>
 <!-- Add an event listener to the delete button -->
 <script>
 function activateRecord(url) {
@@ -239,6 +321,34 @@ function activateRecord(url) {
             });
         }
     });
+    
 }
+function toggleButton(tournamentId) {
+    var url = "{{ route('admin.tournaments.featured', ['id' => ':id']) }}";
+    url = url.replace(':id', tournamentId);
+    var toggle = document.querySelector("#toggle_" + tournamentId);
+    toggle.classList.toggle("active");
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {
+            "_token": "{{ csrf_token() }}",
+            "tournamentId": tournamentId,
+            "is_featured": toggle.checked ? "1" : "0",
+        },
+        success: function(result) {
+            // Display a success message
+            Swal.fire({
+                title: 'Success!',
+                text: 'The record has been updated.',
+                icon: 'success'
+            }).then((result) => {
+                // Reload the page
+                location.reload();
+            });
+        }
+    })
+}
+
 </script>
 

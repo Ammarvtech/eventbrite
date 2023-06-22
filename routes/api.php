@@ -80,3 +80,6 @@ Route::post('/tournaments-create', [TournamentController::class, 'create'])->nam
 Route::post('/upload', [TournamentController::class, 'upload']);
 Route::put('/tournaments/{id}', [TournamentController::class, 'update']);
 Route::delete('/tournaments/{id}', [TournamentController::class, 'delete']);
+
+// create-indent-payment
+Route::post('/create-indent-payment', [TournamentController::class, 'create_stripe_intent']);

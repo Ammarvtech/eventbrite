@@ -15,6 +15,7 @@ use App\Models\NumberOfTeam;
 use App\Models\TournamentFormat;
 use App\Models\TournamentLevel;
 use App\Http\Requests\StoreTournamentRequest;
+use Stripe\StripeClient;
 
 class TournamentController extends Controller
 {
@@ -186,5 +187,69 @@ class TournamentController extends Controller
     public function delete($id){
         $tournament = Tournament::where('id', $id)->delete();
         return response()->json(['message' => 'Tournament deleted successfully'], 200);
+    }
+    // create-indent-payment
+    public function create_stripe_intent(Request $request){
+        $res=array();
+        $res['status']=0;
+        // $header = $request->header('Authorization');
+        // $member=$this->authenticate_verify_token($header);
+        $input = $request->all();
+        if($input){
+            $stripe = new StripeClient('sk_test_51Moz1CFV8hMVqQzQZoplqqUTXaaIbqrJanKVG7hpwvHsH3x7uUl4euomLaicugVmjmXlga2ftQHvQ4UJNUHcDnNk00wom1iTYm');
+            try{
+                $amount = $input['amount'];
+                if(!empty($input['expires_in'])){
+                    // $expires_in=$input['expires_in'];
+                    // $total=floatval($amount) * intval($expires_in);
+                    $total=floatval($amount);
+                }
+                else{
+                    $total=floatval($amount);
+                }
+
+                $cents = intval($total * 500);
+                // if(!empty($member->customer_id)){
+                //     $customer_id=$member->customer_id;
+                // }
+                // else{
+                    $customer = $stripe->customers->create([
+                        'email' =>'ammar@gmail.com',
+                        'name' =>'Ammar Ali',
+                        // 'address' => $stripe_adddress,
+                    ]);
+                    $customer_id=$customer->id;
+                // }
+
+                $intent= $stripe->paymentIntents->create([
+                    'amount' => $cents,
+                    'currency' => 'usd',
+                    'customer'=>$customer_id,
+                    // 'payment_method' => $vals['payment_method'],
+                    'setup_future_usage' => 'off_session',
+                ]);
+                $setupintent=$stripe->setupIntents->create([
+                    'customer' => $customer_id,
+                ]);
+                // return response()->json(['data' => $setupintent], 200);
+                $arr=array(
+                        'paymentIntentId'=>$intent->id,
+                        'setup_client_secret'=>$setupintent->client_secret,
+                        'setup_intent_id'=>$setupintent->id,
+                        'client_secret'=>$intent->client_secret,
+                        'customer'=>$customer_id,
+                        'status'=>1
+                );
+                $res['arr']=$arr;
+                $res['status']=1;
+                return response()->json(['data' => $res], 200);
+                    // print_r($res);
+            }
+            catch(Exception $e) {
+                $arr['msg']="Error >> ".$e->getMessage();
+                $arr['status']=0;
+            }
+        }
+        exit(json_encode($res));
     }
 }
