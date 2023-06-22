@@ -21,7 +21,7 @@ class PagesController extends Controller
                             ->latest()
                             ->take(5)
                             ->get(),
-            'trending_tournaments' => Tournament::with(['images', 'tournamentCategories','category'])
+            'trending_tournaments' => Tournament::with(['images', 'tournamentCategories','category','teams'])
                             ->where('is_active', 1)
                             ->orderBy('created_at', 'asc')
                             ->latest()

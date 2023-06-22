@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('team_members', function (Blueprint $table) {
             $table->id();
-            $table->string('mem_name');
-            $table->string('mem_email');
-            $table->string('mem_phone');
-            $table->string('role');
-            $table->string('emergency_name');
-            $table->string('emergency_phone');
+            $table->string('mem_name')->nullable();
+            $table->string('mem_email')->nullable();
+            $table->string('mem_phone')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('role')->nullable();
+            $table->string('emergency_name')->nullable();
+            $table->string('emergency_phone')->nullable();
             $table->foreignId('team_id')->constrained('teams');
             $table->timestamps();
         });

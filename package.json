@@ -9,5 +9,11 @@
         "axios": "^1.1.2",
         "laravel-vite-plugin": "^0.7.5",
         "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "@stripe/react-stripe-js": "^2.1.0",
+        "next": "^13.4.4",
+        "react-stripe-js": "^1.1.5",
+        "stripe": "^12.8.0"
     }
 }

@@ -43,6 +43,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\Team::factory(100)->create();
         \App\Models\TeamMember::factory(100)->create();
         \App\Models\Review::factory(100)->create();
+        \App\Models\Wallet::factory(10)->create();
+        \App\Models\Transaction::factory(100)->create();
 
 
         // \App\Models\Page::factory(10)->create();

@@ -69,4 +69,18 @@ class User extends Authenticatable
         return $this->hasMany(Team::class);
     }
 
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+    public function wishlist()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+
 }

@@ -29,7 +29,7 @@ class TournamentController extends Controller
             'reviews.user',
             'tournamentType',
             )->findOrFail($id);
-        //dd($tournament->teamMembers);
+        // dd($tournament->teams);
         return view('admin.tournaments.show', compact('tournament'));
     }
     public function create()

@@ -44,6 +44,7 @@ class TeamFactory extends Factory
             'phone' => $this->faker->word(),
             'payment_method' => $this->faker->word(),
             'payment_prof' => $this->faker->word(),
+            'payment_status' => 'paid',
             'waivers_email' => $this->faker->word(),
             'waivers_file' => $this->faker->word(),
         ];

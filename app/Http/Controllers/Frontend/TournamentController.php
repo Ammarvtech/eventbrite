@@ -19,7 +19,22 @@ use Stripe\StripeClient;
 
 class TournamentController extends Controller
 {
-
+    public function tournamentsByUser(Request $request){
+        
+        $tournaments = Tournament::with([
+            'images', 
+            'tournamentCategories',
+            'category',
+            'teams.teamMembers',
+            'reviews.user',
+            'tournamentType',
+            ])
+        ->where('is_active', 1)
+        ->where('user_id', $request->user_id)
+        ->latest()
+        ->paginate(10);
+        return response()->json(['data' => $tournaments], 200);
+    }
     public function tournamentDetail(Request $request){
         
         $tournament = Tournament::with([

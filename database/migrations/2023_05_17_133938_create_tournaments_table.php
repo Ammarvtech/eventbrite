@@ -33,8 +33,8 @@ return new class extends Migration
             $table->string('prize_distribution')->nullable();
             $table->string('level')->nullable();
             $table->string('entry_fee')->nullable();
-            $table->string('rules')->nullable();
-            $table->string('code_of_conduct')->nullable();
+            $table->longText('rules')->nullable();
+            $table->longText('code_of_conduct')->nullable();
             $table->string('age')->nullable();
             $table->string('equipment_requirements')->nullable();
             $table->string('schedule_date')->nullable();
@@ -55,8 +55,8 @@ return new class extends Migration
             $table->string('fourth_venue_availability')->nullable();
             $table->string('contact_information')->nullable();
             $table->string('roles_and_responsibilities')->nullable();
-            $table->string('sponsor_information')->nullable();
-            $table->text('overview')->nullable();
+            $table->longText('sponsor_information')->nullable();
+            $table->longText('overview')->nullable();
             $table->string('is_active')->default(1);
             $table->timestamps();
         });

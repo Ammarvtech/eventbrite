@@ -9,6 +9,9 @@ use App\Http\Controllers\Frontend\TournamentController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\Frontend\TeamController;
+use App\Http\Controllers\Frontend\TransactionController;
+use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\Frontend\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +29,21 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/verify-code', [UserController::class, 'verifyCode']);
 Route::get('/countries', [CountryService::class, 'getAll']);
 
+
+// wishlist
+Route::post('/wishlist', [WishlistController::class, 'getAll']);
+Route::post('/add-to-wishlist', [WishlistController::class, 'addToWishlist']);
+Route::post('/remove-from-wishlist', [WishlistController::class, 'removeFromWishlist']);
+
+// transaction
+Route::get('/transactions/{userId}', [TransactionController::class, 'getAll']);
+
+// payment
+Route::post('/create-indent-payment', [PaymentController::class, 'createStripeIntent']);
 // team
 Route::get('/teams', [TeamController::class, 'getAll']);
 Route::post('/create-team', [TeamController::class, 'create']);
+Route::post('/teamsByUser', [TeamController::class, 'teamsByUser']);
 
 
 // booking
@@ -38,6 +53,7 @@ Route::post('/reset-password', [BookingController::class, 'reset_password']);
 
 // tournament details
 Route::get('/tournament-details/{id}', [TournamentController::class, 'tournamentDetail']);
+Route::post('/tournamentsByUser', [TournamentController::class, 'tournamentsByUser']);
 // profile
 Route::post('/get-user-profile', [ProfileController::class, 'getUserProfile']);
 Route::post('/update-user-profile', [ProfileController::class, 'updateUserProfile']);
