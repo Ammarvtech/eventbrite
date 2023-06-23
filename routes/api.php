@@ -44,6 +44,7 @@ Route::post('/create-indent-payment', [PaymentController::class, 'createStripeIn
 Route::get('/teams', [TeamController::class, 'getAll']);
 Route::post('/create-team', [TeamController::class, 'create']);
 Route::post('/teamsByUser', [TeamController::class, 'teamsByUser']);
+Route::delete('/teams/{id}', [TeamController::class, 'delete']);
 
 
 // booking
@@ -79,6 +80,7 @@ Route::get('/tournaments/{id}', [TournamentController::class, 'getById']);
 Route::post('/tournaments-create', [TournamentController::class, 'create'])->name('tournaments.create');
 Route::post('/upload', [TournamentController::class, 'upload']);
 Route::put('/tournaments/{id}', [TournamentController::class, 'update']);
+Route::put('/update-tournament-payment-status/{id}', [TournamentController::class, 'updatePaymentStatus']);
 Route::delete('/tournaments/{id}', [TournamentController::class, 'delete']);
 
 // create-indent-payment

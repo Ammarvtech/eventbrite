@@ -153,7 +153,12 @@ class TournamentController extends Controller
         }
     
         if($tournament){
-            return response()->json(['message' => 'Tournament saved successfully'], 200);
+            return response()->json(
+                [
+                    'message' => 'Tournament saved successfully',
+                    'tournament_id' => $tournament->id
+                ], 
+            200);
         }
         return response()->json(['message' => 'Something went wrong'], 400);
     }
@@ -187,6 +192,11 @@ class TournamentController extends Controller
     public function delete($id){
         $tournament = Tournament::where('id', $id)->delete();
         return response()->json(['message' => 'Tournament deleted successfully'], 200);
+    }
+
+    public function updatePaymentStatus($id){
+        $tournament = Tournament::where('id', $id)->update(['payment_status' => 1]);
+        return response()->json(['message' => 'Payment status updated successfully'], 200);
     }
     // create-indent-payment
     public function create_stripe_intent(Request $request){

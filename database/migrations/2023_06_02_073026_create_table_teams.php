@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tournament_id')->constrained('tournaments');
-            $table->foreignId('user_id')->constrained('users');
+            $table->string('tournament_id')->nullable();
+            $table->string('user_id')->nullable();
             $table->string('team_name');
             $table->string('affiliation');
             $table->string('team_color');
             $table->string('skill');
             $table->string('logo');
+            $table->string('payment_prof');
             $table->string('full_name');
             $table->string('email');
             $table->string('phone');
             $table->string('payment_method');
-            $table->string('payment_prof');
             $table->string('payment_status');
             $table->string('waivers_email');
             $table->string('waivers_file');

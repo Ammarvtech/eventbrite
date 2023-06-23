@@ -120,31 +120,9 @@ class TeamController extends Controller
                 $data = Team::with('teamMembers')->where('id', $team_id)->first();
                 $team = Team::where('id', $team_id)->first();
                 $tournament = Tournament::where('id', $team->tournament_id)->first();
-
-                Stripe::setApiKey(env('STRIPE_SECRET'));
-                $token = Token::create([
-                    'card' => [
-                        'number' => $request->card_number,
-                        'exp_month' => $request->card_month,
-                        'exp_year' => $request->card_year,
-                        'cvc' => $request->cvc,
-                    ],
-                ]);
-                $charge = Charge::create([
-                    'amount' => intval($tournament->entry_fee) * 100,
-                    'currency' => 'usd',
-                    'source' => $token->id, // Pass the token ID
-                    'description' => 'Registration Fee for tournament title: '.$tournament->name,
-                ]);
-                if($charge['paid'] == true){
-                    $team->payment_status = 'paid';
-                    $team->save();
-                }else{
-                    $team->payment_status = 'pending';
-                    $team->save();
-                }
+                $team->payment_status = 'paid';
                 DB::commit();
-                return response()->json(['data' => $charge['paid']], 200);
+                return response()->json(['data' => 'paid'], 200);
             } catch (Exception $e) {
                 DB::rollback();
                 return response()->json(['error' => $e->getMessage()], 422);
@@ -154,5 +132,11 @@ class TeamController extends Controller
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 422);
         }
+    }
+    public function delete($team_id)
+    {
+        $team = Team::where('id', $team_id)->first();
+        $team->delete();
+        return response()->json(['data' => 'deleted'], 200);
     }
 }
