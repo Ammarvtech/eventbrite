@@ -33,7 +33,7 @@ class TeamController extends Controller
         })->latest()->paginate(10);
         return response()->json(['data' => $tournament], 200);
     }
-    public function create (Request $request)
+    public function create(Request $request)
     {
         $data = request()->all();
         try {
@@ -72,6 +72,7 @@ class TeamController extends Controller
             $data['waivers_file'] = '';
             $data['logo'] = '';
             $data['payment_method'] = 'visa';
+            $data['payment_prof'] = '';
             // $data['payment_status'] = 'pending';
             if ($request->hasFile('logo')) {
                 $file = $request->file('logo');
@@ -82,6 +83,11 @@ class TeamController extends Controller
                 $file = $request->file('waivers_file');
                 $file = $file->store('uploads', 'public');  
                 $data['waivers_file'] = $file;
+            }
+            if ($request->hasFile('payment_prof')) {
+                $file = $request->file('payment_prof');
+                $file = $file->store('uploads', 'public');  
+                $data['payment_prof'] = $file;
             }
             DB::beginTransaction();
             try {
@@ -98,13 +104,14 @@ class TeamController extends Controller
                 $teams->waivers_email = $data['waivers_email'];
                 $teams->waivers_file = $data['waivers_file'];
                 $teams->payment_method ='stripe';
-                $teams->payment_prof = 'abc';
+                $teams->payment_prof = $data['payment_prof'];
                 $teams->payment_status = 'pending';
                 $teams->logo = $data['logo'];
                 $teams->save();
 
                 $team_id = $teams->id;
                 $team_members = json_decode($data['teams'], true);
+                // return response()->json(['data' => $team_members], 200);
                 foreach ($team_members as $team_member) {
                     $team_members = new TeamMember();
                     $team_members->team_id = $team_id;
@@ -114,6 +121,12 @@ class TeamController extends Controller
                     $team_members->role = $team_member['role'];
                     $team_members->emergency_name = $team_member['emergency_name'];
                     $team_members->emergency_phone = $team_member['emergency_phone'];
+
+                    // if (isset($team_member['logo'])) {
+                    //     $file = $team_member['logo'];
+                    //     $file = $file->store('uploads', 'public');
+                    //     $team_members->logo = $file;
+                    // }
                     $team_members->save();
                 }
                 
@@ -122,7 +135,7 @@ class TeamController extends Controller
                 $tournament = Tournament::where('id', $team->tournament_id)->first();
                 $team->payment_status = 'paid';
                 DB::commit();
-                return response()->json(['data' => 'paid'], 200);
+                return response()->json(['data' => $team_members], 200);
             } catch (Exception $e) {
                 DB::rollback();
                 return response()->json(['error' => $e->getMessage()], 422);
@@ -135,6 +148,7 @@ class TeamController extends Controller
     }
     public function delete($team_id)
     {
+        TeamMember::where('team_id', $team_id)->delete();
         $team = Team::where('id', $team_id)->first();
         $team->delete();
         return response()->json(['data' => 'deleted'], 200);

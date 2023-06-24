@@ -535,60 +535,43 @@
                                     <!--begin::Card body-->
                                     @foreach($tournament->teams as $key => $team)
                                     <div id="kt_customer_view_payment_method_{{ $key }}" class="card-body pt-0">
-                                        <!--begin::Option-->
+                            
 
                                         <div class="py-0" data-kt-customer-payment-method="row">
-                                            <!--begin::Header-->
                                             <div class="py-3 d-flex flex-stack flex-wrap">
-                                                <!--begin::Toggle-->
                                                 <div class="d-flex align-items-center collapsible rotate collapsed" data-bs-toggle="collapse" href="#kt_customer_view_payment_method_{{ $key }}_details" role="button" aria-expanded="false" aria-controls="kt_customer_view_payment_method_{{ $key }}_details">
-                                                    <!--begin::Arrow-->
                                                     <div class="me-3 rotate-90">
-                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr071.svg-->
                                                         <span class="svg-icon svg-icon-3">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                                 <path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="black" />
                                                             </svg>
                                                         </span>
-                                                        <!--end::Svg Icon-->
                                                     </div>
-                                                    <!--end::Arrow-->
-                                                    <!--begin::Logo-->
+                                        
                                                    @if($team->logo)
                                                         <img src="{{ asset('storage/uploads/' . $team->logo) }}" class="w-40px me-3" alt="" />
                                                     @else
                                                         <img src="{{ asset('storage/uploads/default.png') }}" class="w-40px me-3" alt="" />
                                                     @endif
-                                                    <!--end::Logo-->
-                                                    <!--begin::Summary-->
+                                               
                                                     <div class="me-3">
                                                         <div class="d-flex align-items-center">
-                                                            <div class="text-gray-800 fw-bolder">{{ $team->team_name }}</div>
-                                                            
+                                                            <div class="text-gray-800 fw-bolder">Team Name: {{ $team->team_name }}</div>
+                                                            <div class="ms-5">Team Affiliation: <span class="badge badge-light-primary">{{ $team->affiliation }}</span></div>
                                                         </div>
-                                                        
+                                                        <div class="text-muted">Created At: {{ $team->created_at }}</div>
                                                     </div>
-                                                    <!--end::Summary-->
                                                 </div>
-                                                <!--end::Toggle-->
-                                                <!--begin::Toolbar-->
+                                        
                                                 <div class="d-flex my-3 ms-9">
-                                                   
-                                                   
-                                                   
-                                                    <!--begin::Menu-->
                                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold w-150px py-3" data-kt-menu="true">
-                                                        <!--begin::Menu item-->
                                                         <div class="menu-item px-3">
                                                             <a href="#" class="menu-link px-3" data-kt-payment-mehtod-action="set_as_primary">Set as Primary</a>
                                                         </div>
-                                                        <!--end::Menu item-->
                                                     </div>
-                                                    <!--end::Menu-->
-                                                    <!--end::More-->
                                                 </div>
-                                                <!--end::Toolbar-->
                                             </div>
+
                                             <!--end::Header-->
                                             <!--begin::Body-->
                                             <div id="kt_customer_view_payment_method_{{ $key }}_details" class="collapse fs-6 ps-10" data-bs-parent="#kt_customer_view_payment_method">
@@ -597,8 +580,56 @@
                                                     <!--begin::Col-->
                                                     <div class="flex-equal me-5">
                                                         <table class="table table-flush fw-bold gy-1">
+                                                            <tbody><tr>
+                                                                <td class="text-muted min-w-125px w-125px">Team Color</td>
+                                                                <td class="text-gray-800"> {{ $team->team_color }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-muted min-w-125px w-125px">Skill</td>
+                                                                <td class="text-gray-800">{{ $team->skill }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-muted min-w-125px w-125px">Waivers Email</td>
+                                                                <td class="text-gray-800">{{ $team->waivers_email }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-muted min-w-125px w-125px">Waivers File</td>
+                                                                <td class="text-gray-800">{{ $team->waivers_file }}</td>
+                                                            </tr>
+                                                            
+                                                        </tbody></table>
+                                                    </div>
+                                                    <!--end::Col-->
+                                                    <!--begin::Col-->
+                                                    <div class="flex-equal">
+                                                        <table class="table table-flush fw-bold gy-1">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td class="text-muted min-w-125px w-125px">Captain Name</td>
+                                                                <td class="text-gray-800">{{ $team->full_name }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-muted min-w-125px w-125px">Captain Email</td>
+                                                                <td class="text-gray-800">{{ $team->email }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-muted min-w-125px w-125px">Captain Phone</td>
+                                                                <td class="text-gray-800">{{ $team->phone }}</td>
+                                                            </tr>
+                                                           
+                                                        
+                                                        </tbody>
+                                                    </table>
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                                <div class="d-flex flex-wrap py-5">
+                                                    <!--begin::Col-->
+                                                    <div class="flex-equal me-5">
+                                                        <table class="table table-flush fw-bold gy-1">
                                                        
                                                         <tr>
+                                                            <th class="text-gray-800">#</th>
                                                             <th class="text-gray-800">Member Name</th>
                                                             <th class="text-gray-800">Member Email</th>
                                                             <th class="text-gray-800">Member Phone</th>
@@ -610,8 +641,11 @@
                                                         @php
                                                             $teamMembers = DB::table('team_members')->where('team_id',$team->id)->get()
                                                         @endphp
-                                                         @foreach($teamMembers as $teamMember)
+                                                         @foreach($teamMembers as $key => $teamMember)
                                                         <tr>
+                                                           <td class="text-muted min-w-25px w-25px">
+                                                                {{ $key + 1 }}
+                                                            </td>
                                                            <td class="text-muted min-w-125px w-125px">
                                                            
                                                             {{ isset($teamMember->mem_name) ? $teamMember->mem_name : 'N/A' }}

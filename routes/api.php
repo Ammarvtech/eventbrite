@@ -31,8 +31,6 @@ Route::get('/countries', [CountryService::class, 'getAll']);
 
 
 // wishlist
-Route::post('/wishlist', [WishlistController::class, 'getAll']);
-Route::post('/add-to-wishlist', [WishlistController::class, 'addToWishlist']);
 Route::post('/remove-from-wishlist', [WishlistController::class, 'removeFromWishlist']);
 
 // transaction
@@ -41,11 +39,22 @@ Route::get('/transactions/{userId}', [TransactionController::class, 'getAll']);
 // payment
 Route::post('/create-indent-payment', [PaymentController::class, 'createStripeIntent']);
 // team
-Route::get('/teams', [TeamController::class, 'getAll']);
-Route::post('/create-team', [TeamController::class, 'create']);
-Route::post('/teamsByUser', [TeamController::class, 'teamsByUser']);
-Route::delete('/teams/{id}', [TeamController::class, 'delete']);
 
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    
+    Route::post('/wishlist', [WishlistController::class, 'getAll']);
+    Route::post('/teamsByUser', [TeamController::class, 'teamsByUser']);
+    Route::post('/add-to-wishlist', [WishlistController::class, 'addToWishlist']);
+    Route::post('/tournaments-create', [TournamentController::class, 'create'])->name('tournaments.create');
+    Route::post('/tournamentsByUser', [TournamentController::class, 'tournamentsByUser']);
+    Route::post('/create-team', [TeamController::class, 'create']);
+});
+Route::get('/teams', [TeamController::class, 'getAll']);
+
+
+Route::delete('/teams/{id}', [TeamController::class, 'delete']);
+// category
+Route::post('/get-categories', [TournamentController::class, 'getCategories']);
 
 // booking
 Route::get('/bookings', [BookingController::class, 'getAll']);
@@ -54,7 +63,10 @@ Route::post('/reset-password', [BookingController::class, 'reset_password']);
 
 // tournament details
 Route::get('/tournament-details/{id}', [TournamentController::class, 'tournamentDetail']);
-Route::post('/tournamentsByUser', [TournamentController::class, 'tournamentsByUser']);
+// apply middleware to check if user is logged in
+
+
+
 // profile
 Route::post('/get-user-profile', [ProfileController::class, 'getUserProfile']);
 Route::post('/update-user-profile', [ProfileController::class, 'updateUserProfile']);
@@ -77,7 +89,7 @@ Route::post('/contact-us', [PagesController::class, 'saveContactUs']);
 Route::get('/tournament-details', [TournamentController::class, 'getDetails']);
 Route::get('/tournaments', [TournamentController::class, 'getAll']);
 Route::get('/tournaments/{id}', [TournamentController::class, 'getById']);
-Route::post('/tournaments-create', [TournamentController::class, 'create'])->name('tournaments.create');
+
 Route::post('/upload', [TournamentController::class, 'upload']);
 Route::put('/tournaments/{id}', [TournamentController::class, 'update']);
 Route::put('/update-tournament-payment-status/{id}', [TournamentController::class, 'updatePaymentStatus']);

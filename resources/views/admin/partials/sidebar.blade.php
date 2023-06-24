@@ -88,7 +88,7 @@
                         <span class="menu-title">Customer</span>
                     </a>
                 </div>
-                  <div class="menu-item">
+                  {{-- <div class="menu-item">
                     <a class="menu-link" href="{{ route('admin.bookings.index') }}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -105,8 +105,8 @@
                         </span>
                         <span class="menu-title">Bookings</span>
                     </a>
-                </div>
-                  <div class="menu-item">
+                </div> --}}
+                  {{-- <div class="menu-item">
                     <a class="menu-link" href="{{ route('admin.booking-intrests.index') }}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -123,7 +123,7 @@
                         </span>
                         <span class="menu-title">Booking Intrests</span>
                     </a>
-                </div>
+                </div> --}}
                 <div class="menu-item">
                     <a class="menu-link" href="{{ route('admin.tournaments.index') }}">
                         <span class="menu-icon">
@@ -142,11 +142,6 @@
                         <span class="menu-title">Tournaments</span>
                     </a>
                 </div>
-                
-               
-              
-                
-
              <div class="menu-item">
                     <a class="menu-link" href="{{ route('admin.contactus.index') }}">
                         <span class="menu-icon">
@@ -166,7 +161,7 @@
                     </a>
                 </div>
 
-                <div class="menu-item">
+                {{-- <div class="menu-item">
                     <a class="menu-link" href="{{ route('admin.reviews.index') }}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -183,9 +178,9 @@
                         </span>
                         <span class="menu-title">Reviews</span>
                     </a>
-                </div>
+                </div> --}}
 
-                <div class="menu-item">
+                {{-- <div class="menu-item">
                     <a class="menu-link" href="{{ route('admin.affiliations.index') }}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -202,7 +197,7 @@
                         </span>
                         <span class="menu-title">Affiliations </span>
                     </a>
-                </div>
+                </div> --}}
 
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
@@ -223,7 +218,15 @@
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion">
-                            <div class="menu-item">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{ route('admin.affiliations.index') }}">
+                            <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Affiliations</span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
                             <a class="menu-link" href="{{ route('admin.tournaments-types.index') }}">
                             <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>

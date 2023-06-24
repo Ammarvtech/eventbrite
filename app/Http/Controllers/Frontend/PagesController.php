@@ -26,7 +26,7 @@ class PagesController extends Controller
                             ->orderBy('created_at', 'asc')
                             ->latest()
                             ->take(5)
-                            ->get(),
+                            ->get()
             // 'trending_tournaments' => DB::table('tournaments')->where('is_active', '1')->orderBy('created_at', 'desc')->take(5)->get(),
     
         ], 200);

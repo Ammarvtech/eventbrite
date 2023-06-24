@@ -16,9 +16,15 @@ use App\Models\TournamentFormat;
 use App\Models\TournamentLevel;
 use App\Http\Requests\StoreTournamentRequest;
 use Stripe\StripeClient;
+use Exception;
 
 class TournamentController extends Controller
 {
+    public function getCategories(Request $request){
+        $search = $request->search;
+        $categories = Category::where('name', 'like', '%'.$search.'%')->get();
+        return response()->json(['data' => $categories], 200);
+    }
     public function tournamentsByUser(Request $request){
         
         $tournaments = Tournament::with([
@@ -49,7 +55,12 @@ class TournamentController extends Controller
         ->where('id', $request->id)
         ->first();
 
-        return response()->json(['data' => $tournament], 200);
+        $teamsCount = $tournament->teams->count();
+
+        return response()->json([
+            'data' => $tournament,
+            'teamsCount' => $teamsCount,
+        ], 200);
     }
     public function getDetails(){
         $categories = Category::all();
@@ -80,7 +91,7 @@ class TournamentController extends Controller
             ->orderBy('id', $sort)
             ->latest()
             ->paginate(10);
-        if($request->has('category') || $request->has('postal_code')){
+        if($request->has('category') || $request->has('name')){
             if($request->category != ""){
                 $tournaments = Tournament::with(['images', 'tournamentCategories','category'])->where('is_active', 1)
                 ->whereHas('category', function($query) use ($request){
@@ -89,28 +100,21 @@ class TournamentController extends Controller
                 ->orderBy('id', $sort)
                 ->paginate(10);
             }
-            if($request->postal_code != ""){
+            if($request->name != ""){
                 $tournaments = Tournament::with(['images', 'tournamentCategories','category'])->where('is_active', 1)
-                ->where('postal_code', $request->postal_code)
+                ->where('title','like', '%'.$request->name.'%')
                 ->orderBy('id', $sort)
                 ->paginate(10);
             }
-            if($request->category != "" && $request->postal_code != ""){
+            if($request->category != "" && $request->name != ""){
                 $tournaments = Tournament::with(['images', 'tournamentCategories','category'])->where('is_active', 1)
                 ->whereHas('category', function($query) use ($request){
                     $query->where('name', $request->category);
                 })
-                ->orWhere('postal_code', $request->postal_code)
+                ->orWhere('title','like', '%'.$request->name.'%')
                 ->orderBy('id', $sort)
                 ->paginate(10);
             }
-            // $tournaments = Tournament::with(['images', 'tournamentCategories','category'])->where('is_active', 1)
-            // ->whereHas('category', function($query) use ($request){
-            //     $query->where('name', $request->category);
-            // })
-            // ->orWhere('postal_code', $request->postal_code)
-            // ->orderBy('id', 'desc')
-            // ->paginate(10);
         }
         return response()->json(['data' => $tournaments], 200);
     }
@@ -262,4 +266,5 @@ class TournamentController extends Controller
         }
         exit(json_encode($res));
     }
+    
 }
