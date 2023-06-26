@@ -219,6 +219,14 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion">
                         <div class="menu-item">
+                            <a class="menu-link" href="{{ route('admin.settings.create') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Site Settings</span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
                             <a class="menu-link" href="{{ route('admin.affiliations.index') }}">
                             <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>

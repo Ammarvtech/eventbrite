@@ -41,11 +41,8 @@ class UserController extends Controller
     }
     public function edit(User $user,$id)
     { 
-        $user = User::find($id);
-        $user->load('wallet.transaction.tournament');
-        //dd($user);
-        //$user = User::find($id);
-        //$countries = Country::get();
+        $user = User::with('countryName')->find($id);
+        // return $user->countryName;
         return view('admin.users.edit', compact('user'));
     }
     public function update(Request $request, User $user,$id)

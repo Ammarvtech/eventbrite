@@ -26,7 +26,8 @@ class PagesController extends Controller
                             ->orderBy('created_at', 'asc')
                             ->latest()
                             ->take(5)
-                            ->get()
+                            ->get(),
+            'contact_us' => DB::table('contact_us_cms')->where('id', 1)->first()
             // 'trending_tournaments' => DB::table('tournaments')->where('is_active', '1')->orderBy('created_at', 'desc')->take(5)->get(),
     
         ], 200);

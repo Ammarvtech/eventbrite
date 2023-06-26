@@ -57,23 +57,13 @@ class CmsController extends Controller
     }
      public function homeSubmit(Request $request){
         
-        // $request->validate([
-        //     'title' => 'required',
-        //     'heading' => 'required',
-        //     'description' => 'required',
-        //     'btn_text' => 'required',
-        //     'btn_link' => 'required',
-        // ]);
         $data = $request->all();
-        if ($request->hasFile('banner_img')) {
-            $data['banner_img'] = $request->file('banner_img')->store('uploads', 'public');
-        }else{
-            $data['banner_img'] = DB::table('home_cms')->where('id', 1)->first()->banner_img;
-        }
+
         if ($request->hasFile('resource_img')) {
             $data['resource_img'] = $request->file('resource_img')->store('uploads', 'public');
-        }else{
-            $data['resource_img'] = DB::table('home_cms')->where('id', 1)->first()->resource_img;
+        }
+        if ($request->hasFile('banner_img')) {
+            $data['banner_img'] = $request->file('banner_img')->store('uploads', 'public');
         }
        
         unset($data['_token']);

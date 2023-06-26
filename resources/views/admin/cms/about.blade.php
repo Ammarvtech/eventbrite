@@ -59,7 +59,7 @@
                                 
                                     <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
                                         data-kt-image-input="true">
-                                    <div class="image-input-wrapper w-150px h-150px" style="background-image: url('http://127.0.0.1:8000/storage/{{ $about->image }}')">
+                                    <div class="image-input-wrapper w-150px h-150px" style="background-image: url('/{{ $about->image }}')">
                                     </div>
                              
                                         <label
@@ -116,7 +116,7 @@
                                 
                                     <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
                                         data-kt-image-input="true">
-                                    <div class="image-input-wrapper w-150px h-150px" style="background-image: url('http://127.0.0.1:8000/storage/{{ $about->des_image }}')">
+                                    <div class="image-input-wrapper w-150px h-150px" style="background-image: url('/{{ $about->des_image }}')">
                                     </div>
                              
                                         <label
@@ -173,7 +173,7 @@
                                 
                                     <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
                                         data-kt-image-input="true">
-                                    <div class="image-input-wrapper w-150px h-150px" style="background-image: url('http://127.0.0.1:8000/storage/{{ $about->contact_image }}')">
+                                    <div class="image-input-wrapper w-150px h-150px" style="background-image: url('/{{ $about->contact_image }}')">
                                     </div>
                              
                                         <label

@@ -82,5 +82,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Wishlist::class);
     }
+    public function countryName()
+    {
+        return $this->belongsTo(Country::class, 'country');
+    }
 
 }

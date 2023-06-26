@@ -17,6 +17,7 @@ use App\Models\TournamentLevel;
 use App\Http\Requests\StoreTournamentRequest;
 use Stripe\StripeClient;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class TournamentController extends Controller
 {
@@ -78,6 +79,7 @@ class TournamentController extends Controller
             'numberOfTeams' => $numberOfTeams,
             'tournamentFormats' => $tournamentFormats,
             'tournamentLevels' => $tournamentLevels,
+            'tournament_fee' => DB::table('site_settings')->where('key', 'tournament_fee')->first()->value,
         ], 200);
     }
 

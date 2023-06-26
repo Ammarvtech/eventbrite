@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\BookingIntrestController;
 use App\Http\Controllers\Admin\TournamentEventController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\AffiliationController;
+use App\Http\Controllers\Admin\SettingsController;
 
 // redirect to /admin/login if got /
 Route::redirect('/', '/admin/login');
@@ -69,6 +70,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('delete/{id}', [TournamentController::class, 'delete'])->name('destroy');
         Route::get('activate/{id}', [TournamentController::class, 'activate'])->name('activate');
         Route::post('activate/{id}', [TournamentController::class, 'featured'])->name('featured');
+
+    });
+    Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
+        Route::get('create', [SettingsController::class, 'create'])->name('create');
+        Route::post('store', [SettingsController::class, 'store'])->name('store');
 
     });
 
