@@ -17,6 +17,7 @@ class PagesController extends Controller
             'data' => $page,
             'tournaments' => Tournament::with(['images', 'tournamentCategories','category'])
                             ->where('is_active', 1)
+                            ->where('is_featured', 1)
                             ->orderBy('id', 'desc')
                             ->latest()
                             ->take(5)

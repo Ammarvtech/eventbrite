@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\TournamentEventController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\AffiliationController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\EventTypeController;
 
 // redirect to /admin/login if got /
 Route::redirect('/', '/admin/login');
@@ -67,7 +68,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::post('store', [TournamentController::class, 'store'])->name('store'); 
         Route::get('edit/{id}', [TournamentController::class, 'edit'])->name('edit');
         Route::post('update/{id}', [TournamentController::class, 'update'])->name('update');
-        Route::get('delete/{id}', [TournamentController::class, 'delete'])->name('destroy');
+        Route::get('delete/{id}', [TournamentController::class, 'destroy'])->name('destroy');
         Route::get('activate/{id}', [TournamentController::class, 'activate'])->name('activate');
         Route::post('activate/{id}', [TournamentController::class, 'featured'])->name('featured');
 
@@ -110,14 +111,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     //     Route::post('update/{id}', [JobController::class, 'update'])->name('update');
     //     Route::get('delete/{id}', [JobController::class, 'delete'])->name('delete');
     // });
-    // Route::group(['prefix' => 'event-categories', 'as' => 'event-categories.'], function () {
-    //     Route::get('index', [EventCategoryController::class, 'index'])->name('index');
-    //     Route::get('create', [EventCategoryController::class, 'create'])->name('create');
-    //     Route::post('store', [EventCategoryController::class, 'store'])->name('store');
-    //     Route::get('edit/{id}', [EventCategoryController::class, 'edit'])->name('edit');
-    //     Route::post('update/{id}', [EventCategoryController::class, 'update'])->name('update');
-    //     Route::get('delete/{id}', [EventCategoryController::class, 'delete'])->name('destroy');
-    // });
+    Route::group(['prefix' => 'event-categories', 'as' => 'event-categories.'], function () {
+        Route::get('index', [EventCategoryController::class, 'index'])->name('index');
+        Route::get('create', [EventCategoryController::class, 'create'])->name('create');
+        Route::post('store', [EventCategoryController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [EventCategoryController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [EventCategoryController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [EventCategoryController::class, 'delete'])->name('destroy');
+    });
 
     Route::group(['prefix' => 'cms-pages', 'as' => 'cms-pages.'], function () {
         Route::get('index', [PageController::class, 'index'])->name('index');
@@ -163,6 +164,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('edit/{id}', [BookingIntrestController::class, 'edit'])->name('edit');
         Route::post('update/{id}', [BookingIntrestController::class, 'update'])->name('update');
         Route::get('delete/{id}', [BookingIntrestController::class, 'delete'])->name('destroy');
+    });
+    Route::group(['prefix' => 'event-types', 'as' => 'event-types.'], function () {
+        Route::get('index', [EventTypeController::class, 'index'])->name('index');
+        Route::get('create', [EventTypeController::class, 'create'])->name('create');
+        Route::post('store', [EventTypeController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [EventTypeController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [EventTypeController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [EventTypeController::class, 'delete'])->name('destroy');
     });
     Route::group(['prefix' => 'tournaments-types', 'as' => 'tournaments-types.'], function () {
         Route::get('index', [TournamenttypeController::class, 'index'])->name('index');

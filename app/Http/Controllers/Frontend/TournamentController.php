@@ -9,7 +9,7 @@ use App\Models\TournamentImage;
 use App\Models\TournamentCategory;
 use App\Models\Category;
 use App\Models\TournamentType;
-use App\Models\EventCategory;
+use App\Models\EventType;
 use App\Models\Country;
 use App\Models\NumberOfTeam;
 use App\Models\TournamentFormat;
@@ -66,7 +66,7 @@ class TournamentController extends Controller
     public function getDetails(){
         $categories = Category::all();
         $tournamentTypes = TournamentType::all();
-        $eventTyeps = EventCategory::all();
+        $eventTyeps = EventType::all();
         $countries = Country::all();
         $numberOfTeams = NumberOfTeam::all();
         $tournamentFormats = TournamentFormat::all();

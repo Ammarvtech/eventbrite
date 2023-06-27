@@ -49,12 +49,13 @@
                                 <thead>
                              
                                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                                        <th class="min-w-250px">Title</th>
+                                        <th class="min-w-150px">Title</th>
                                         <th class="min-w-150px">Category</th>
                                         <th class="min-w-150px">Start Date</th>
                                         <th class="min-w-150px">End Date</th>
                                         <th class="min-w-50px">Teams</th>
-                                        <th class="min-w-50px">Status</th>
+                                        <th class="min-w-25px">Payment Status</th>
+                                        <th class="min-w-25px">Status</th>
                                         <th class="min-w-50px">is_featured</th>
                                         <th class="min-w-150px">Created at</th>
                                         <th class="text-end min-w-70px">Actions</th>
@@ -107,6 +108,13 @@
                                                      >
                                                     <span class="slider"></span>
                                                 </label>
+                                            </td>
+                                            <td>
+                                                @if($tournament->payment_status == 1)
+                                                <div class="badge badge-light-success">Completed</div>
+                                                @else
+                                                <div class="badge badge-light-danger">Pending</div>
+                                                @endif
                                             </td>
                                             <td>
                                                 @if($tournament->is_active == 1)

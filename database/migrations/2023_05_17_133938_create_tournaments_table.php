@@ -59,6 +59,7 @@ return new class extends Migration
             $table->longText('overview')->nullable();
             $table->string('is_active')->default(1);
             $table->string('payment_status')->default(0);
+            $table->string('is_featured')->default(0);
             $table->timestamps();
         });
     }
