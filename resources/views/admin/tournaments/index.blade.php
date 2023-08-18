@@ -98,17 +98,8 @@
                                                 </strong>
                                                 
                                             </td>
-                                            <td>
-                                                <div class="badge badge-light-primary">{{ $tournament->created_at }}</div>
-                                            </td>
-                                            <td>
-                                            <label class="toggle-button">
-                                                    <input type="checkbox" class="is_featured"  onclick="toggleButton('{{ $tournament->id }}')" id="toggle_{{ $tournament->id }}"
-                                                    <?php if($tournament->is_featured == 1) { echo "checked"; } ?>
-                                                     >
-                                                    <span class="slider"></span>
-                                                </label>
-                                            </td>
+                                            
+                                           
                                             <td>
                                                 @if($tournament->payment_status == 1)
                                                 <div class="badge badge-light-success">Completed</div>
@@ -122,6 +113,17 @@
                                                 @else
                                                 <div class="badge badge-light-danger">Inactive</div>
                                                 @endif
+                                            </td>
+                                            <td>
+                                                <label class="toggle-button">
+                                                        <input type="checkbox" class="is_featured"  onclick="toggleButton('{{ $tournament->id }}')" id="toggle_{{ $tournament->id }}"
+                                                        <?php if($tournament->is_featured == 1) { echo "checked"; } ?>
+                                                         >
+                                                        <span class="slider"></span>
+                                                    </label>
+                                                </td>
+                                            <td>
+                                                <div class="badge badge-light-primary">{{ $tournament->created_at }}</div>
                                             </td>
                                             
                                             
