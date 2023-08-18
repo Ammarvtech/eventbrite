@@ -79,7 +79,7 @@ class TournamentController extends Controller
             'numberOfTeams' => $numberOfTeams,
             'tournamentFormats' => $tournamentFormats,
             'tournamentLevels' => $tournamentLevels,
-            'tournament_fee' => DB::table('site_settings')->where('key', 'tournament_fee')->first()->value,
+            'tournament_fee' => DB::table('site_settings')->where('key', 'tournament_fee')->first()->value ? DB::table('site_settings')->where('key', 'tournament_fee')->first()->value : 0,
         ], 200);
     }
 

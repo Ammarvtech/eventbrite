@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\TournamentController;
 use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\BookingController;
-use App\Http\Controllers\Admin\TournamenttypeController;
+use App\Http\Controllers\Admin\TournamentTypeController;
 use App\Http\Controllers\Admin\TournamentFormatController;
 use App\Http\Controllers\Admin\TournamentLevelController;
 use App\Http\Controllers\Admin\TournamentTeamController;
@@ -174,12 +174,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('delete/{id}', [EventTypeController::class, 'delete'])->name('destroy');
     });
     Route::group(['prefix' => 'tournaments-types', 'as' => 'tournaments-types.'], function () {
-        Route::get('index', [TournamenttypeController::class, 'index'])->name('index');
-        Route::get('create', [TournamenttypeController::class, 'create'])->name('create');
-        Route::post('store', [TournamenttypeController::class, 'store'])->name('store');
-        Route::get('edit/{id}', [TournamenttypeController::class, 'edit'])->name('edit');
-        Route::post('update/{id}', [TournamenttypeController::class, 'update'])->name('update');
-        Route::get('delete/{id}', [TournamenttypeController::class, 'delete'])->name('destroy');
+        Route::get('index', [TournamentTypeController::class, 'index'])->name('index');
+        Route::get('create', [TournamentTypeController::class, 'create'])->name('create');
+        Route::post('store', [TournamentTypeController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [TournamentTypeController::class, 'edit'])->name('edit');
+        Route::post('update/{id}', [TournamentTypeController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [TournamentTypeController::class, 'delete'])->name('destroy');
     });
     Route::group(['prefix' => 'tournaments-formats', 'as' => 'tournaments-formats.'], function () {
         Route::get('index', [TournamentFormatController::class, 'index'])->name('index');

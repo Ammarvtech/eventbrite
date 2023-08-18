@@ -58,6 +58,16 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
             'verify_token' => $token,
         ]);
+        // send mail 
+        $message = "Your verification code is: ".$token;
+        $subject = "Verification Code";
+        $headers = "From:info@playoffz.com";
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+        $headers .= "X-Priority: 1\r\n";
+        $headers .= "X-MSMail-Priority: High\r\n\r\n";
+        
+        mail($request->email, $subject, $message, $headers);
 
         Wallet::create([
             'user_id' => $user->id,

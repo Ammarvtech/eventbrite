@@ -50,15 +50,15 @@
                              
                                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                         <th class="min-w-150px">Title</th>
-                                        <th class="min-w-150px">Category</th>
-                                        <th class="min-w-150px">Start Date</th>
-                                        <th class="min-w-150px">End Date</th>
+                                        <th class="min-w-50px">Category</th>
+                                        <th class="min-w-50px">Start Date</th>
+                                        <th class="min-w-50px">End Date</th>
                                         <th class="min-w-50px">Teams</th>
                                         <th class="min-w-25px">Payment Status</th>
                                         <th class="min-w-25px">Status</th>
                                         <th class="min-w-50px">is_featured</th>
-                                        <th class="min-w-150px">Created at</th>
-                                        <th class="text-end min-w-70px">Actions</th>
+                                        <th class="min-w-50px">Created at</th>
+                                        <th class="min-w-50px">Actions</th>
                                     </tr>
                           
                                 </thead>
@@ -127,7 +127,7 @@
                                             
                                             <!--end::Type=-->
                                             <!--begin::Action=-->
-                                            <td class="text-end">
+                                            <td>
                                                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
                                                     data-kt-menu-trigger="click"
                                                     data-kt-menu-placement="bottom-end">Actions
