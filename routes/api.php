@@ -40,7 +40,7 @@ Route::get('/transactions/{userId}', [TransactionController::class, 'getAll']);
 Route::post('/create-indent-payment', [PaymentController::class, 'createStripeIntent']);
 // team
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
+// Route::group(['middleware' => ['auth:sanctum']], function () {
     
     Route::post('/wishlist', [WishlistController::class, 'getAll']);
     Route::post('/teamsByUser', [TeamController::class, 'teamsByUser']);
@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/tournaments-create', [TournamentController::class, 'create'])->name('tournaments.create');
     Route::post('/tournamentsByUser', [TournamentController::class, 'tournamentsByUser']);
     Route::post('/create-team', [TeamController::class, 'create']);
-});
+// });
 Route::get('/teams', [TeamController::class, 'getAll']);
 
 
