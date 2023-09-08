@@ -38,7 +38,7 @@ class ProfileController extends Controller
                 'facebook' => 'string',
                 'twitter' => 'string',
                 'instagram' => 'string',
-                'linkedin' => 'string',
+                'linkedIn' => 'string',
                 'secondary_phone' => 'string',
                 'secondary_email' => 'email',
                 'postal_code' => 'string',

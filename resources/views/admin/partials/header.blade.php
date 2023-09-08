@@ -28,7 +28,7 @@
         </div>
         <!--end::Mobile logo-->
         <!--begin::Header wrapper-->
-        <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1" id="kt_app_header_wrapper">
+        {{-- <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1" id="kt_app_header_wrapper">
             <!--begin::Menu wrapper-->
             <div class="app-header-menu app-header-mobile-drawer align-items-stretch" data-kt-drawer="true"
                 data-kt-drawer-name="app-header-menu" data-kt-drawer-activate="{default: true, lg: false}"
@@ -5768,7 +5768,7 @@
                 <!--end::Header menu toggle-->
             </div>
             <!--end::Navbar-->
-        </div>
+        </div> --}}
         <!--end::Header wrapper-->
     </div>
     <!--end::Header container-->
