@@ -199,7 +199,7 @@
                                         data-kt-image-input="true">
                                      <!--begin::Preview existing avatar-->
                                         @if(count($product->product_images) > 0 && $product->product_images[0]->image != null)
-                                            <div class="image-input-wrapper w-150px h-150px" style="background-image: url('{{ $product->product_images[0]->image }}')"></div>
+                                            <div class="image-input-wrapper w-150px h-150px" style="background-image: url('{{ url($product->product_images[0]->image) }}')"></div>
                                         @else
                                             <div class="image-input-wrapper w-150px h-150px" ></div>
                                         @endif

@@ -200,7 +200,7 @@
                                         data-kt-image-input="true">
                                         <!--begin::Preview existing avatar-->
                                         <div class="image-input-wrapper w-150px h-150px"
-                                             style="background-image: url('{{ $banner->image }}')">
+                                             style="background-image: url('{{ url($banner->image) }}')">
                                         </div>
                                         <!--end::Preview existing avatar-->
                                         <!--begin::Label-->

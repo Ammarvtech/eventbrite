@@ -199,7 +199,7 @@
                                     <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
                                         data-kt-image-input="true">
                                         <!--begin::Preview existing avatar-->
-                                    <div class="image-input-wrapper w-150px h-150px" style="background-image: url('{{ $category->image }}')">
+                                    <div class="image-input-wrapper w-150px h-150px" style="background-image: url('{{ url($category->image) }}')">
                                     </div>
                                     <!--end::Preview existing avatar-->
                                         <!--begin::Label-->

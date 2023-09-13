@@ -59,7 +59,7 @@
                                 
                                     <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3"
                                         data-kt-image-input="true">
-                                    <div class="image-input-wrapper w-150px h-150px" style="background-image: url('{{ $data->image }}')">
+                                    <div class="image-input-wrapper w-150px h-150px" style="background-image: url('{{ url($data->image) }}')">
                                     </div>
                              
                                         <label
