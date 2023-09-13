@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Team;
 use App\Models\TeamMember;
 use App\Models\Tournament;
+use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -134,6 +135,12 @@ class TeamController extends Controller
                 $team = Team::where('id', $team_id)->first();
                 $tournament = Tournament::where('id', $team->tournament_id)->first();
                 $team->payment_status = 'paid';
+                Notification::create([
+                    'user_id' => $team->user_id,
+                    'tournament_id' => $team->tournament_id,
+                    'title' => 'Team Created',
+                    'description' => 'Your team has been created successfully for '.$tournament->name.' tournament.',
+                ]);
                 DB::commit();
                 return response()->json(['data' => $team_members], 200);
             } catch (Exception $e) {

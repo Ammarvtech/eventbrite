@@ -12,6 +12,8 @@ use App\Http\Controllers\Frontend\TeamController;
 use App\Http\Controllers\Frontend\TransactionController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\PaymentController;
+use App\Http\Controllers\Frontend\NotificationController;
+use App\Http\Controllers\Frontend\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,9 @@ use App\Http\Controllers\Frontend\PaymentController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+Route::get('/get-site-settings', [SettingController::class, 'getAll']);
+Route::get('/get-notifications', [NotificationController::class, 'getAll']);
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);

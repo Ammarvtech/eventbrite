@@ -81,7 +81,35 @@
             
                                         <label class="required form-label">Tournament Fee</label>
                                         <input type="text" name="tournament_fee" class="form-control mb-2"
-                                            placeholder="Tournament Fee" value="@if(isset($settings->value)) {{$settings->value}} @endif" />
+                                            placeholder="Tournament Fee" value="@if(isset($tournament_fee->value)) {{$tournament_fee->value}} @endif" />
+                                        
+                                    </div>
+                                    <div class="fv-row">
+            
+                                        <label class="required form-label">Social Yelp Link</label>
+                                        <input type="text" name="social_yelp" class="form-control mb-2"
+                                            placeholder="Social Yelp" value="@if(isset($social_yelp->value)) {{$social_yelp->value}} @endif" />
+                                        
+                                    </div>
+                                    <div class="fv-row">
+            
+                                        <label class="required form-label">Social Google Store Link</label>
+                                        <input type="text" name="social_google_store" class="form-control mb-2"
+                                            placeholder="Social Google Store Link" value="@if(isset($social_google_store->value)) {{$social_google_store->value}} @endif" />
+                                        
+                                    </div>
+                                    <div class="fv-row">
+            
+                                        <label class="required form-label">Social Instagram</label>
+                                        <input type="text" name="social_instagram" class="form-control mb-2"
+                                            placeholder="Social Instagram" value="@if(isset($social_instagram->value)) {{$social_instagram->value}} @endif" />
+                                        
+                                    </div>
+                                    <div class="fv-row">
+            
+                                        <label class="required form-label">Social Facebook</label>
+                                        <input type="text" name="social_facebook" class="form-control mb-2"
+                                            placeholder="Social Facebook" value="@if(isset($social_facebook->value)) {{$social_facebook->value}} @endif" />
                                         
                                     </div>
                                 </div>
